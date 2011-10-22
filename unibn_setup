@@ -64,6 +64,8 @@
 set -e
 set -u
 
+version=1.1
+
 
 ###############################################################################
 #                         Handle --version and --help.                        #
@@ -71,7 +73,7 @@ set -u
 
 case "${1:-}" in
 	--version)
-		echo '1.1'
+		echo "$version"
 		exit 0
 		;;
 
