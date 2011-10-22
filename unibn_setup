@@ -111,20 +111,30 @@ echo
 
 echo 'Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:'
 
-read -r -p 'Uni Bonn (HRZ) Benutzername: ' user
-read -r -p 'Uni Bonn (HRZ) Passwort: ' password
+user=
+password=
 
-if [[ -z "$user" ]]
-then
-	echo 'E: Es wurde kein Benutzername eingegeben.'
-	exit 1
-fi
+# Poll the user for a user name until he enters one.
+while [[ -z "$user" ]]
+do
+	read -r -p 'Uni Bonn (HRZ) Benutzername: ' user
 
-if [[ -z "$password" ]]
-then
-	echo 'E: Es wurde kein Passwort eingegeben.'
-	exit 1
-fi
+	if [[ -z "$user" ]]
+	then
+		echo 'E: Es wurde kein Benutzername eingegeben.'
+	fi
+done
+
+# Poll the user for a password until he enters one.
+while [[ -z "$password" ]]
+do
+	read -r -p 'Uni Bonn (HRZ) Passwort: ' password
+
+	if [[ -z "$password" ]]
+	then
+		echo 'E: Es wurde kein Passwort eingegeben.'
+	fi
+done
 
 echo
 
