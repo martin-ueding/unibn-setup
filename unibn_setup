@@ -23,7 +23,7 @@ echo 'I: Installiere vpn client, emacs, LaTeX.'
 sudo apt-get -y install vpnc emacs texlive-latex-base
 
 echo 'I: Erstelle Skript für automatische Einwahl ins VPN wenn im WLAN bonnet.'
-sudo cat > /etc/NetworkManager/dispatcher.d/99bonnet << EOF
+cat << EOF | sudo tee /etc/NetworkManager/dispatcher.d/99bonnet
 #!/bin/bash
 # Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
@@ -61,7 +61,7 @@ echo 'I: Skript erstellt.'
 
 echo 'I: Erstelle Konfigurationsdatei für vpnc, den VPN client.'
 
-sudo cat > /etc/unibn-wlan.conf << EOF
+cat << EOF | sudo tee /etc/unibn-wlan.conf
 IPSec gateway 131.220.224.201
 IPSec ID unibn-wlan
 IPSec secret Ne\$e!
