@@ -173,8 +173,6 @@ EOF
 sudo chmod 755 /etc/NetworkManager/dispatcher.d/99bonnet
 sudo chown root:root /etc/NetworkManager/dispatcher.d/99bonnet
 
-echo 'I: Skript erstellt.'
-
 
 ###############################################################################
 #                        Create config file for vpnc.                         #
@@ -191,8 +189,6 @@ Xauth password $password
 EOF
 
 sudo chown root:root /etc/unibn-wlan.conf
-
-echo 'I: Konfigurationsdatei erstellt.'
 
 
 ###############################################################################
