@@ -106,6 +106,16 @@ echo 'Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:'
 read -r -p 'Uni Bonn (HRZ) Benutzername: ' user
 read -r -p 'Uni Bonn (HRZ) Passwort: ' password
 
+if [[ -z "$user" ]]
+then
+	echo 'W: Es wurde kein Benutzername eingegeben.'
+fi
+
+if [[ -z "$password" ]]
+then
+	echo 'W: Es wurde kein Passwort eingegeben.'
+fi
+
 echo
 
 
