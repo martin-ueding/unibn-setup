@@ -118,7 +118,7 @@ echo
 #                    Ask for Bonn university user account.                    #
 ###############################################################################
 
-echo 'Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:'
+echo 'I: Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:'
 
 user=
 password=
@@ -126,7 +126,7 @@ password=
 # Poll the user for a user name until he enters one.
 while [[ -z "$user" ]]
 do
-	read -r -p 'Uni Bonn (HRZ) Benutzername: ' user
+	read -r -p '-> Uni Bonn (HRZ) Benutzername: ' user
 
 	if [[ -z "$user" ]]
 	then
@@ -137,7 +137,7 @@ done
 # Poll the user for a password until he enters one.
 while [[ -z "$password" ]]
 do
-	read -r -p 'Uni Bonn (HRZ) Passwort: ' password
+	read -r -p '-> Uni Bonn (HRZ) Passwort: ' password
 
 	if [[ -z "$password" ]]
 	then
