@@ -105,7 +105,7 @@ echo 'I: Entfernen der per apt installierten Software:'
 echo 'I:     sudo apt-get -y remove emacs texlive-latex base gnuplot'
 echo 'I:     sudo apt-get -y autoremove'
 echo
-echo 'I: Entfernen der VPN Konfiguration:'
+echo 'I: Entfernen des VPN Zugangs:'
 echo 'I:     sudo rm -f /etc/unibn-wlan.conf'
 echo 'I:     sudo rm -f /etc/NetworkManager/dispatcher.d/99bonnet'
 echo 'I:     sudo apt-get -y remove vpnc'
