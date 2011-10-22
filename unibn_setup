@@ -47,6 +47,7 @@ echo 'I: Befehle aus:'
 echo 'I: sudo apt-get -y remove vpnc emacs texlive-latex base gnuplot'
 echo 'I: sudo apt-get -y autoremove'
 echo 'I: sudo rm -f /etc/NetworkManager/dispatcher.d/99bonnet /etc/unibn-wlan.conf'
+echo 'I: sudo rm -rf /opt/root'
 echo
 echo 'Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:'
 read -r -p 'Uni Bonn (HRZ) Benutzername: ' user
