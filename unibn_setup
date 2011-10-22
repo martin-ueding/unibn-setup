@@ -116,12 +116,14 @@ read -r -p 'Uni Bonn (HRZ) Passwort: ' password
 
 if [[ -z "$user" ]]
 then
-	echo 'W: Es wurde kein Benutzername eingegeben.'
+	echo 'E: Es wurde kein Benutzername eingegeben.'
+	exit 1
 fi
 
 if [[ -z "$password" ]]
 then
-	echo 'W: Es wurde kein Passwort eingegeben.'
+	echo 'E: Es wurde kein Passwort eingegeben.'
+	exit 1
 fi
 
 echo
