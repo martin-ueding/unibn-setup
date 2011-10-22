@@ -190,6 +190,8 @@ then
 	echo 'I: ROOT wurde bereits heruntergeladen.'
 else
 	echo 'I: Lade ROOT herunter …'
+	# Delete the old download so that wget does not try to preserve the broken
+	# download.
 	rm -f root_v5.30.02.Linux-slc5-gcc4.3.tar.gz
 	wget ftp://root.cern.ch/root/root_v5.30.02.Linux-slc5-gcc4.3.tar.gz
 fi
