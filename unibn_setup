@@ -206,6 +206,10 @@ sudo mv root /opt/
 echo 'I: Passe Rechte der ROOT Installation an …'
 sudo chown -R root:root /opt/root
 
+# Check whether the environment setting script of the ROOT package is already
+# included in the .bashrc of the user. This assumes that the user uses bash,
+# but someone who does this on a fresh Ubuntu installation will certainly do
+# so.
 if fgrep '/opt/root/bin/thisroot.sh' $HOME/.bashrc > /dev/null 2>&1
 then
 	echo 'I: ROOT ist bereits im Environment.'
