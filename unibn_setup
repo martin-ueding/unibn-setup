@@ -1,6 +1,12 @@
 #!/bin/bash
 # Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
+if [[ "$1" == "--version" ]]
+then
+	echo '1.0'
+	exit 0
+fi
+
 set -u
 
 echo '###############################################################################'
