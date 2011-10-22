@@ -9,14 +9,14 @@ echo '##########################################################################
 
 echo
 
-echo "Dieses Skript wird gleich nach dem [sudo] Passwort fragen."
-echo "Dies ist das Passwort für Ihren Benutzeraccount auf diesem Rechner."
+echo 'Dieses Skript wird gleich nach dem [sudo] Passwort fragen.'
+echo 'Dies ist das Passwort für Ihren Benutzeraccount auf diesem Rechner.'
 
 echo
 echo 'I: Installiere vpn client, emacs, LaTeX.'
 sudo apt-get -y install vpnc emacs texlive-latex-base
 
-echo "I: Erstelle Skript für automatische Einwahl ins VPN wenn im WLAN bonnet."
+echo 'I: Erstelle Skript für automatische Einwahl ins VPN wenn im WLAN bonnet.'
 sudo cat > /etc/NetworkManager/dispatcher.d/99bonnet << EOF
 #!/bin/bash
 # Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
@@ -52,8 +52,8 @@ EOF
 echo 'I: Skript erstellt.'
 
 echo 'I: Erstelle Konfigurationsdatei für vpnc, den VPN client.'
-read -r -p "Uni Bonn (HRZ) Benutzername: " user
-read -r -p "Uni Bonn (HRZ) Passwort: " password
+read -r -p 'Uni Bonn (HRZ) Benutzername: ' user
+read -r -p 'Uni Bonn (HRZ) Passwort: ' password
 
 sudo cat > /etc/unibn-wlan.conf << EOF
 IPSec gateway 131.220.224.201
@@ -63,3 +63,6 @@ Xauth username $user
 Xauth password $password
 EOF
 echo 'I: Konfigurationsdatei erstellt.
+
+echo
+echo 'Die Installation und Konfiguration ist abgeschlossen.'
