@@ -199,7 +199,8 @@ echo 'I: Installiere ROOT …'
 
 root_file=root_v5.30.02.Linux-slc5-gcc4.3.tar.gz
 
-# Test whether there is any need to download the root package.
+# Test whether there is any need to download the root package. The checksum is
+# needed to detect an aborted download.
 if [[ -f "$root_file" && $(md5sum "$root_file" | awk '{print $1}') == 53b311f490e7673e19c493ccb7216748 ]]
 then
 	echo 'I: ROOT wurde bereits heruntergeladen.'
