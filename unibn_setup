@@ -107,5 +107,17 @@ EOF
 echo 'I: Konfigurationsdatei erstellt.'
 sudo chown root:root /etc/unibn-wlan.conf
 
+echo 'I: Lade ROOT herunter.'
+wget ftp://root.cern.ch/root/root_v5.30.02.Linux-slc5-gcc4.3.tar.gz
+echo 'I: Installiere ROOT.'
+tar -xzf root_v5.30.02.Linux-slc5-gcc4.3.tar.gz
+sudo mv root /opt/
+sudo chown -R root:root /opt/root
+
+echo 'I: Füge ROOT zum Environment hinzu.'
+echo >> "$HOME/.bashrc"
+echo '. /opt/root/bin/thisroot.sh' >> "$HOME/.bashrc"
+
+
 echo
 echo 'Die Installation und Konfiguration ist abgeschlossen.'
