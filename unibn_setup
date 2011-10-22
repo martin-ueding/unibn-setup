@@ -37,14 +37,14 @@ set -u
 
 echo '###############################################################################'
 echo '#              Installation von Software für die EDV Vorlesung                #'
-echo '#                            (emacs, LaTeX, ROOT)                             #'
+echo '#                       (emacs, LaTeX, ROOT, gnuplot)                         #'
 echo '#                                                                             #'
 echo '#               Einrichtung des VPN für das Netzwerk "bonnet"                 #'
 echo '###############################################################################'
 echo
 echo 'I: Um die Aktionen dieses Skripts rückgängig zu machen, führen Sie folgende'
 echo 'I: Befehle aus:'
-echo 'I: sudo apt-get -y remove vpnc emacs texlive-latex base'
+echo 'I: sudo apt-get -y remove vpnc emacs texlive-latex base gnuplot'
 echo 'I: sudo apt-get -y autoremove'
 echo 'I: sudo rm -f /etc/NetworkManager/dispatcher.d/99bonnet /etc/unibn-wlan.conf'
 echo
@@ -55,8 +55,8 @@ echo
 echo 'I: Dieses Skript wird gleich nach dem [sudo] Passwort fragen.'
 echo 'I: Dies ist das Passwort für Ihren Benutzeraccount auf diesem Rechner.'
 echo
-echo 'I: Installiere vpn client, emacs, LaTeX …'
-sudo apt-get -y install vpnc emacs texlive-latex-base
+echo 'I: Installiere vpn client, emacs, LaTeX, gnuplot …'
+sudo apt-get -y install vpnc emacs texlive-latex-base gnuplot
 
 echo 'I: Erstelle Skript für automatische Einwahl ins VPN wenn im WLAN bonnet …'
 cat << EOF | sudo tee /etc/NetworkManager/dispatcher.d/99bonnet
