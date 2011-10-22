@@ -55,12 +55,12 @@ fi
 
 set -u
 
-echo '###############################################################################'
-echo '#              Installation von Software für die EDV Vorlesung                #'
-echo '#                       (emacs, LaTeX, ROOT, gnuplot)                         #'
-echo '#                                                                             #'
-echo '#               Einrichtung des VPN für das Netzwerk "bonnet"                 #'
-echo '###############################################################################'
+echo '+-----------------------------------------------------------------------------+'
+echo '|              Installation von Software für die EDV Vorlesung                |'
+echo '|                       (emacs, LaTeX, ROOT, gnuplot)                         |'
+echo '|                                                                             |'
+echo '|               Einrichtung des VPN für das Netzwerk "bonnet"                 |'
+echo '+-----------------------------------------------------------------------------+'
 echo
 echo 'I: Um die Aktionen dieses Skripts rückgängig zu machen, führen Sie folgende'
 echo 'I: Befehle aus:'
