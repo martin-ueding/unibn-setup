@@ -219,7 +219,7 @@ else
 	echo 'I: Füge ROOT zum Environment hinzu …'
 	echo >> "$HOME/.bashrc"
 	echo '. /opt/root/bin/thisroot.sh' >> "$HOME/.bashrc"
-	echo 'I: Bitte ein neues Terminal öffnen ODER folgendes ausführen, um ROOT zu benutzen:'
+	echo 'I: Bitte ein neues Terminal öffnen *oder* folgendes ausführen, um ROOT zu benutzen:'
 	echo '. ~/.bashrc'
 fi
 
