@@ -237,4 +237,4 @@ fi
 ###############################################################################
 
 echo
-echo 'Die Installation und Konfiguration ist abgeschlossen.'
+echo 'I: Die Installation und Konfiguration ist abgeschlossen.'
