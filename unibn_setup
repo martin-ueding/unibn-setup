@@ -27,6 +27,20 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+
+# This script is intended to run on Ubuntu, but it should work on every Debian
+# derivative where the user can run commands with `sudo`. Ubuntu has this as a
+# default, Debian uses a separate root account instead of sudo by default.
+#
+# Several packages needed in the "EDV für Physiker" class at Bonn University
+# are installed with this script. The ROOT statistics package does not have a
+# Debian package and is installed manually instead.
+#
+# To ease the use of the "bonnet" wireless network, a script for the
+# NetworkManager dispatcher deamon is installed which automatically connects
+# the user to the VPN of the university. For that, the university user account
+# is needed and polled in the script.
+
 if [[ "$1" == "--version" ]]
 then
 	echo '1.0.1'
