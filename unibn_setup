@@ -9,8 +9,9 @@ echo '#                               (emacs, LaTeX)                            
 echo '#                                                                             #'
 echo '#               Einrichtung des VPN für das Netzwerk "bonnet"                 #'
 echo '###############################################################################'
-
-echo 'I: Um die Aktionen dieses Skripts rückgängig zu machen, führen Sie folgende Befehle aus:'
+echo
+echo 'I: Um die Aktionen dieses Skripts rückgängig zu machen, führen Sie folgende'
+echo 'I: Befehle aus:'
 echo 'I: sudo apt-get -y remove vpnc emacs texlive-latex base'
 echo 'I: sudo apt-get -y autoremove'
 echo 'I: sudo rm -f /etc/NetworkManager/dispatcher.d/99bonnet /etc/unibn-wlan.conf'
