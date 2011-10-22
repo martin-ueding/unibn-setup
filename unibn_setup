@@ -37,7 +37,7 @@ set -u
 
 echo '###############################################################################'
 echo '#              Installation von Software für die EDV Vorlesung                #'
-echo '#                               (emacs, LaTeX)                                #'
+echo '#                            (emacs, LaTeX, ROOT)                             #'
 echo '#                                                                             #'
 echo '#               Einrichtung des VPN für das Netzwerk "bonnet"                 #'
 echo '###############################################################################'
@@ -55,10 +55,10 @@ echo
 echo 'I: Dieses Skript wird gleich nach dem [sudo] Passwort fragen.'
 echo 'I: Dies ist das Passwort für Ihren Benutzeraccount auf diesem Rechner.'
 echo
-echo 'I: Installiere vpn client, emacs, LaTeX.'
+echo 'I: Installiere vpn client, emacs, LaTeX …'
 sudo apt-get -y install vpnc emacs texlive-latex-base
 
-echo 'I: Erstelle Skript für automatische Einwahl ins VPN wenn im WLAN bonnet.'
+echo 'I: Erstelle Skript für automatische Einwahl ins VPN wenn im WLAN bonnet …'
 cat << EOF | sudo tee /etc/NetworkManager/dispatcher.d/99bonnet
 #!/bin/bash
 # Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
@@ -95,8 +95,7 @@ sudo chmod 755 /etc/NetworkManager/dispatcher.d/99bonnet
 sudo chown root:root /etc/NetworkManager/dispatcher.d/99bonnet
 echo 'I: Skript erstellt.'
 
-echo 'I: Erstelle Konfigurationsdatei für vpnc, den VPN client.'
-
+echo 'I: Erstelle Konfigurationsdatei für vpnc, den VPN client …'
 cat << EOF | sudo tee /etc/unibn-wlan.conf
 IPSec gateway 131.220.224.201
 IPSec ID unibn-wlan
@@ -108,17 +107,17 @@ echo 'I: Konfigurationsdatei erstellt.'
 sudo chown root:root /etc/unibn-wlan.conf
 
 
-echo 'I: Installiere ROOT.'
+echo 'I: Installiere ROOT …'
 # Test whether there is any need to download the root package.
 if [[ -f root_v5.30.02.Linux-slc5-gcc4.3.tar.gz && $(md5sum root_v5.30.02.Linux-slc5-gcc4.3.tar.gz | awk '{print $1}') == 53b311f490e7673e19c493ccb7216748 ]]
 then
 	echo 'I: ROOT wurde bereits heruntergeladen.'
 else
-	echo 'I: Lade ROOT herunter.'
+	echo 'I: Lade ROOT herunter …'
 	wget ftp://root.cern.ch/root/root_v5.30.02.Linux-slc5-gcc4.3.tar.gz
 fi
 
-echo 'I: Entpacke ROOT.'
+echo 'I: Entpacke ROOT …'
 tar -xzf root_v5.30.02.Linux-slc5-gcc4.3.tar.gz
 echo 'I: Lösche alte ROOT installation …'
 sudo rm -rf /opt/root
@@ -131,7 +130,7 @@ if fgrep '/opt/root/bin/thisroot.sh' $HOME/.bashrc > /dev/null 2>&1
 then
 	echo 'I: ROOT ist bereits im Environment.'
 else
-	echo 'I: Füge ROOT zum Environment hinzu.'
+	echo 'I: Füge ROOT zum Environment hinzu …'
 	echo >> "$HOME/.bashrc"
 	echo '. /opt/root/bin/thisroot.sh' >> "$HOME/.bashrc"
 	echo 'I: Bitte ein neues Terminal öffnen ODER folgendes ausführen, um ROOT zu benutzen:'
