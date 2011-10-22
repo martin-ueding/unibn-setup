@@ -120,6 +120,9 @@ echo
 ###############################################################################
 
 echo 'I: Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:'
+echo 'I: Warnung: Ihr Passwort wird im Klartext angezeigt und später bei der'
+echo 'I: Erstellung der Konfigurationsdatei noch einmal angezeigt. Benutzen Sie'
+echo 'I: Skript daher bitte nicht, wenn andere Ihr Passwort sehen könnten.'
 
 user=
 password=
