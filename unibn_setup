@@ -30,7 +30,7 @@ sudo cat > /etc/NetworkManager/dispatcher.d/99bonnet << EOF
 set -e
 set -u
 
-if [[ "$1" != "wlan0" ]]
+if [[ "\$1" != "wlan0" ]]
 then
 	return
 fi
@@ -48,13 +48,15 @@ then
 fi
 
 # Handle the action
-if [[ "$2" == up ]]
+if [[ "\$2" == up ]]
 then
 	vpnc /etc/unibn-wlan.conf
 else
 	vpnc-disconnect
 fi
 EOF
+sudo chmod 755 /etc/NetworkManager/dispatcher.d/99bonnet
+sudo chown root:root /etc/NetworkManager/dispatcher.d/99bonnet
 echo 'I: Skript erstellt.'
 
 echo 'I: Erstelle Konfigurationsdatei für vpnc, den VPN client.'
@@ -66,7 +68,8 @@ IPSec secret Ne\$e!
 Xauth username $user
 Xauth password $password
 EOF
-echo 'I: Konfigurationsdatei erstellt.
+echo 'I: Konfigurationsdatei erstellt.'
+sudo chown root:root /etc/unibn-wlan.conf
 
 echo
 echo 'Die Installation und Konfiguration ist abgeschlossen.'
