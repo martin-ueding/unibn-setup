@@ -95,8 +95,10 @@ echo
 ###############################################################################
 
 echo 'Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:'
+
 read -r -p 'Uni Bonn (HRZ) Benutzername: ' user
 read -r -p 'Uni Bonn (HRZ) Passwort: ' password
+
 echo
 
 
@@ -108,6 +110,7 @@ echo 'I: Dieses Skript wird gleich nach dem [sudo] Passwort fragen.'
 echo 'I: Dies ist das Passwort für Ihren Benutzeraccount auf diesem Rechner.'
 echo
 echo 'I: Installiere vpn client, emacs, LaTeX, gnuplot …'
+
 sudo apt-get -y install vpnc emacs texlive-latex-base gnuplot
 
 
@@ -116,6 +119,7 @@ sudo apt-get -y install vpnc emacs texlive-latex-base gnuplot
 ###############################################################################
 
 echo 'I: Erstelle Skript für automatische Einwahl ins VPN wenn im WLAN bonnet …'
+
 cat << EOF | sudo tee /etc/NetworkManager/dispatcher.d/99bonnet
 #!/bin/bash
 # Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
@@ -148,8 +152,10 @@ else
 	vpnc-disconnect
 fi
 EOF
+
 sudo chmod 755 /etc/NetworkManager/dispatcher.d/99bonnet
 sudo chown root:root /etc/NetworkManager/dispatcher.d/99bonnet
+
 echo 'I: Skript erstellt.'
 
 
@@ -158,6 +164,7 @@ echo 'I: Skript erstellt.'
 ###############################################################################
 
 echo 'I: Erstelle Konfigurationsdatei für vpnc, den VPN client …'
+
 cat << EOF | sudo tee /etc/unibn-wlan.conf
 IPSec gateway 131.220.224.201
 IPSec ID unibn-wlan
@@ -165,8 +172,10 @@ IPSec secret Ne\$e!
 Xauth username $user
 Xauth password $password
 EOF
-echo 'I: Konfigurationsdatei erstellt.'
+
 sudo chown root:root /etc/unibn-wlan.conf
+
+echo 'I: Konfigurationsdatei erstellt.'
 
 
 ###############################################################################
@@ -174,6 +183,7 @@ sudo chown root:root /etc/unibn-wlan.conf
 ###############################################################################
 
 echo 'I: Installiere ROOT …'
+
 # Test whether there is any need to download the root package.
 if [[ -f root_v5.30.02.Linux-slc5-gcc4.3.tar.gz && $(md5sum root_v5.30.02.Linux-slc5-gcc4.3.tar.gz | awk '{print $1}') == 53b311f490e7673e19c493ccb7216748 ]]
 then
@@ -185,10 +195,13 @@ fi
 
 echo 'I: Entpacke ROOT …'
 tar -xzf root_v5.30.02.Linux-slc5-gcc4.3.tar.gz
+
 echo 'I: Lösche alte ROOT installation …'
 sudo rm -rf /opt/root
+
 echo 'I: Verschiebe ROOT nach /opt …'
 sudo mv root /opt/
+
 echo 'I: Passe Rechte der ROOT Installation an …'
 sudo chown -R root:root /opt/root
 
