@@ -227,8 +227,8 @@ else
 	echo >> "$HOME/.bashrc"
 	echo '# Setup ROOT environment.' >> "$HOME/.bashrc"
 	echo '. /opt/root/bin/thisroot.sh' >> "$HOME/.bashrc"
-	echo 'I: Bitte ein neues Terminal öffnen *oder* folgendes ausführen, um ROOT zu benutzen:'
-	echo '. ~/.bashrc'
+	echo 'I: ROOT wird erst funktionieren, wenn Sie ein neues Terminal öffnen.'
+	echo 'I: Sie können auch mit `. ~/.bashrc` die Konfiguration neu laden.'
 fi
 
 
