@@ -1,4 +1,9 @@
 #!/bin/bash
+
+###############################################################################
+#                                   License                                   #
+###############################################################################
+#
 # Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 # All rights reserved.
 #
@@ -28,6 +33,10 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
+###############################################################################
+#                                 Description                                 #
+###############################################################################
+#
 # This script is intended to run on Ubuntu, but it should work on every Debian
 # derivative where the user can run commands with `sudo`. Ubuntu has this as a
 # default, Debian uses a separate root account instead of sudo by default.
@@ -40,6 +49,11 @@
 # NetworkManager dispatcher deamon is installed which automatically connects
 # the user to the VPN of the university. For that, the university user account
 # is needed and polled in the script.
+
+
+###############################################################################
+#                         Handle --version and --help                         #
+###############################################################################
 
 if [[ "$1" == "--version" ]]
 then
@@ -54,6 +68,11 @@ then
 fi
 
 set -u
+
+
+###############################################################################
+#                   Print welcome message and instructions.                   #
+###############################################################################
 
 echo '+-----------------------------------------------------------------------------+'
 echo '|              Installation von Software für die EDV Vorlesung                |'
@@ -73,11 +92,22 @@ echo 'Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:'
 read -r -p 'Uni Bonn (HRZ) Benutzername: ' user
 read -r -p 'Uni Bonn (HRZ) Passwort: ' password
 echo
+
+
+###############################################################################
+#                        Install packages via apt-get.                        #
+###############################################################################
+
 echo 'I: Dieses Skript wird gleich nach dem [sudo] Passwort fragen.'
 echo 'I: Dies ist das Passwort für Ihren Benutzeraccount auf diesem Rechner.'
 echo
 echo 'I: Installiere vpn client, emacs, LaTeX, gnuplot …'
 sudo apt-get -y install vpnc emacs texlive-latex-base gnuplot
+
+
+###############################################################################
+#                          Create VPN login script.                           #
+###############################################################################
 
 echo 'I: Erstelle Skript für automatische Einwahl ins VPN wenn im WLAN bonnet …'
 cat << EOF | sudo tee /etc/NetworkManager/dispatcher.d/99bonnet
@@ -116,6 +146,11 @@ sudo chmod 755 /etc/NetworkManager/dispatcher.d/99bonnet
 sudo chown root:root /etc/NetworkManager/dispatcher.d/99bonnet
 echo 'I: Skript erstellt.'
 
+
+###############################################################################
+#                        Create config file for vpnc.                         #
+###############################################################################
+
 echo 'I: Erstelle Konfigurationsdatei für vpnc, den VPN client …'
 cat << EOF | sudo tee /etc/unibn-wlan.conf
 IPSec gateway 131.220.224.201
@@ -127,6 +162,10 @@ EOF
 echo 'I: Konfigurationsdatei erstellt.'
 sudo chown root:root /etc/unibn-wlan.conf
 
+
+###############################################################################
+#                      Install ROOT statistics package.                       #
+###############################################################################
 
 echo 'I: Installiere ROOT …'
 # Test whether there is any need to download the root package.
@@ -158,6 +197,10 @@ else
 	echo '. ~/.bashrc'
 fi
 
+
+###############################################################################
+#                                   Finish.                                   #
+###############################################################################
 
 echo
 echo 'Die Installation und Konfiguration ist abgeschlossen.'
