@@ -116,6 +116,31 @@ echo
 
 
 ###############################################################################
+#                         Ask for installation scope.                         #
+###############################################################################
+
+
+read -r -p '-> VPN Zugang einrichten? [Y/n] ' answer
+
+if [[ "$answer" = [yYjJ] || -z "$answer" ]]
+then
+	install_vpn=true
+else
+	install_vpn=false
+fi
+
+
+read -r -p '-> ROOT Statistik installieren? [Y/n] ' answer
+
+if [[ "$answer" = [yYjJ] || -z "$answer" ]]
+then
+	install_root=true
+else
+	install_root=false
+fi
+
+
+###############################################################################
 #                    Ask for Bonn university user account.                    #
 ###############################################################################
 
