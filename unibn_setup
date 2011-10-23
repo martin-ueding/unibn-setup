@@ -153,8 +153,7 @@ echo
 if [[ "$install_vpn" == "true" ]]
 then
 	echo 'I: Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:'
-	echo 'I: Warnung: Ihr Passwort wird im Klartext angezeigt. Benutzen Sie das'
-	echo 'I: Skript daher bitte nicht, wenn andere Ihr Passwort sehen könnten.'
+	echo 'I: Ihr Passwort wird beim Tippen nicht angezeigt.'
 
 	user=
 	password=
@@ -173,7 +172,7 @@ then
 	# Poll the user for a password until he enters one.
 	while [[ -z "$password" ]]
 	do
-		read -r -p '-> Uni Bonn (HRZ) Passwort: ' password
+		read -r -s -p '-> Uni Bonn (HRZ) Passwort: ' password
 
 		if [[ -z "$password" ]]
 		then
