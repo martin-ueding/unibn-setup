@@ -388,6 +388,10 @@ then
 		echo 'I: ROOT ist bereits im Environment.'
 	else
 		echo 'I: Füge ROOT zum Environment hinzu …'
+		if [[ -f "$HOME/.bashrc" ]]
+		then
+			cp "$HOME/.bashrc" "$HOME/.bashrc.bak"
+		fi
 		cat >> "$HOME/.bashrc" << EOF
 
 # Setup ROOT environment.
