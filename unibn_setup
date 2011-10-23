@@ -54,7 +54,9 @@
 #
 # In order to run, this script needs:
 # * apt-get or yum
+# * awk
 # * bash
+# * grep
 # * md5sum
 # * sudo
 # * tar
