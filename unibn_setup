@@ -377,16 +377,18 @@ then
 		echo 'I: Passe Rechte der ROOT Installation an …'
 		sudo chown -R root:root /opt/root
 
-		# Check whether the environment setting script of the ROOT package is already
-		# included in the .bashrc of the user. This assumes that the user uses bash,
-		# but someone who does this on a fresh Ubuntu installation will certainly do
-		# so.
-		if fgrep '/opt/root/bin/thisroot.sh' $HOME/.bashrc > /dev/null 2>&1
-		then
-			echo 'I: ROOT ist bereits im Environment.'
-		else
-			echo 'I: Füge ROOT zum Environment hinzu …'
-			cat >> "$HOME/.bashrc" << EOF
+	fi
+
+	# Check whether the environment setting script of the ROOT package is already
+	# included in the .bashrc of the user. This assumes that the user uses bash,
+	# but someone who does this on a fresh Ubuntu installation will certainly do
+	# so.
+	if fgrep '/opt/root/bin/thisroot.sh' $HOME/.bashrc > /dev/null 2>&1
+	then
+		echo 'I: ROOT ist bereits im Environment.'
+	else
+		echo 'I: Füge ROOT zum Environment hinzu …'
+		cat >> "$HOME/.bashrc" << EOF
 
 # Setup ROOT environment.
 if [[ -f /opt/root/bin/thisroot.sh ]]
@@ -395,9 +397,8 @@ then
 fi
 EOF
 
-			echo 'I: ROOT wird erst funktionieren, wenn Sie ein neues Terminal öffnen.'
-			echo 'I: Sie können auch mit `. ~/.bashrc` die Konfiguration neu laden.'
-		fi
+		echo 'I: ROOT wird erst funktionieren, wenn Sie ein neues Terminal öffnen.'
+		echo 'I: Sie können auch mit `. ~/.bashrc` die Konfiguration neu laden.'
 	fi
 
 	echo
