@@ -58,7 +58,7 @@
 # * md5sum
 # * sudo
 # * tar
-# * wget
+# * wget (at least on non-Fedora)
 # * which
 
 
@@ -221,6 +221,13 @@ then
 	packages_fedora=( vpnc ${packages_fedora[@]} )
 fi
 
+# Fedora has a ROOT package, so this is used instead of the self-made install
+# from the ROOT website.
+if [[ "$install_root" == "true" ]]
+then
+	packages_fedora=( root ${packages_fedora[@]} )
+fi
+
 if which apt-get > /dev/null 2>&1
 then
 	sudo apt-get -y install ${packages_debian[@]}
@@ -298,7 +305,9 @@ fi
 #                      Install ROOT statistics package.                       #
 ###############################################################################
 
-if [[ "$install_root" == "true" ]]
+# Do not perform this installation on a Fedora machine since there is a RPM for
+# ROOT.
+if [[ "$install_root" == "true" ]] && ! which yum > /dev/null 2>&1
 then
 
 	echo 'I: Installiere ROOT …'
