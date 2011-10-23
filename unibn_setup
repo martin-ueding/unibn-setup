@@ -263,8 +263,6 @@ EOF
 #                        Create config file for vpnc.                         #
 ###############################################################################
 
-if [[ "$install_vpn" == "true" ]]
-then
 	if [[ -f "$vpn_config_file" ]]
 	then
 		echo 'I: Es existiert bereits eine vpnc Konfigurationsdatei.'
@@ -383,6 +381,8 @@ EOF
 		echo 'I: ROOT wird erst funktionieren, wenn Sie ein neues Terminal öffnen.'
 		echo 'I: Sie können auch mit `. ~/.bashrc` die Konfiguration neu laden.'
 	fi
+
+	echo
 fi
 
 
@@ -390,5 +390,4 @@ fi
 #                                   Finish.                                   #
 ###############################################################################
 
-echo
 echo 'I: Die Installation und Konfiguration ist abgeschlossen.'
