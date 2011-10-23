@@ -168,6 +168,8 @@ else
 	echo 'I: VPN *nicht* wird eingerichtet.'
 fi
 
+echo
+
 
 read -r -p '-> ROOT Statistik installieren? [Y/n] ' answer
 
@@ -216,6 +218,8 @@ elif which yum > /dev/null 2>&1
 then
 	sudo yum -y install ${packages_fedora[@]}
 fi
+
+echo
 
 
 ###############################################################################
