@@ -153,8 +153,7 @@ echo
 if [[ "$install_vpn" == "true" ]]
 then
 	echo 'I: Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:'
-	echo 'I: Warnung: Ihr Passwort wird im Klartext angezeigt und später bei der'
-	echo 'I: Erstellung der Konfigurationsdatei noch einmal angezeigt. Benutzen Sie'
+	echo 'I: Warnung: Ihr Passwort wird im Klartext angezeigt. Benutzen Sie das'
 	echo 'I: Skript daher bitte nicht, wenn andere Ihr Passwort sehen könnten.'
 
 	user=
@@ -213,7 +212,7 @@ if [[ "$install_vpn" == "true" ]]
 then
 	echo 'I: Erstelle Skript für automatische Einwahl ins VPN wenn im WLAN bonnet …'
 
-	cat << EOF | sudo tee /etc/NetworkManager/dispatcher.d/99bonnet
+	cat << EOF | sudo tee /etc/NetworkManager/dispatcher.d/99bonnet > /dev/null
 #!/bin/bash
 # Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
@@ -256,7 +255,7 @@ EOF
 
 	echo 'I: Erstelle Konfigurationsdatei für vpnc, den VPN client …'
 
-	cat << EOF | sudo tee /etc/unibn-wlan.conf
+	cat << EOF | sudo tee /etc/unibn-wlan.conf > /dev/null
 IPSec gateway 131.220.224.201
 IPSec ID unibn-wlan
 IPSec secret Ne\$e!
