@@ -71,6 +71,9 @@ set -u
 
 version=1.1
 
+vpn_dispatcher_file=/etc/NetworkManager/dispatcher.d/99bonnet
+vpn_config_file=/etc/unibn-wlan.conf
+
 
 ###############################################################################
 #                         Handle --version and --help.                        #
@@ -119,8 +122,8 @@ fi
 
 echo
 echo 'I: Entfernen des VPN Zugangs:'
-echo 'I:     sudo rm -f /etc/unibn-wlan.conf'
-echo 'I:     sudo rm -f /etc/NetworkManager/dispatcher.d/99bonnet'
+echo "I:     sudo rm -f $vpn_config_file"
+echo "I:     sudo rm -f $vpn_dispatcher_file"
 
 if which apt-get > /dev/null 2>&1
 then
@@ -255,7 +258,7 @@ if [[ "$install_vpn" == "true" ]]
 then
 	echo 'I: Erstelle Skript für automatische Einwahl ins VPN wenn im WLAN bonnet …'
 
-	cat << EOF | sudo tee /etc/NetworkManager/dispatcher.d/99bonnet > /dev/null
+	cat << EOF | sudo tee "$vpn_dispatcher_file" > /dev/null
 #!/bin/bash
 # Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
@@ -282,14 +285,14 @@ fi
 # Handle the action
 if [[ "\$2" == up ]]
 then
-	vpnc /etc/unibn-wlan.conf
+	vpnc "$vpn_config_file"
 else
 	vpnc-disconnect
 fi
 EOF
 
-	sudo chmod 755 /etc/NetworkManager/dispatcher.d/99bonnet
-	sudo chown root:root /etc/NetworkManager/dispatcher.d/99bonnet
+	sudo chmod 755 "$vpn_dispatcher_file"
+	sudo chown root:root "$vpn_dispatcher_file"
 
 
 ###############################################################################
@@ -298,7 +301,7 @@ EOF
 
 	echo 'I: Erstelle Konfigurationsdatei für vpnc, den VPN client …'
 
-	cat << EOF | sudo tee /etc/unibn-wlan.conf > /dev/null
+	cat << EOF | sudo tee "$vpn_config_file" > /dev/null
 IPSec gateway 131.220.224.201
 IPSec ID unibn-wlan
 IPSec secret Ne\$e!
@@ -306,7 +309,7 @@ Xauth username $user
 Xauth password $password
 EOF
 
-	sudo chown root:root /etc/unibn-wlan.conf
+	sudo chown root:root "$vpn_config_file"
 fi
 
 
