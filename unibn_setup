@@ -244,11 +244,13 @@ then
 	packages_fedora=( root ${packages_fedora[@]} )
 fi
 
+# Install packages with apt-get if it is there.
 if which apt-get > /dev/null 2>&1
 then
 	sudo apt-get -y install ${packages_debian[@]}
 fi
 
+# Install packages with yum if it is there.
 if which yum > /dev/null 2>&1
 then
 	sudo yum -y install ${packages_fedora[@]}
