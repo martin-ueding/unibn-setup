@@ -46,9 +46,11 @@
 # the user to the VPN of the university. For that, the university user account
 # is needed and polled in the script.
 #
-# This script is intended to run on Ubuntu, but it should work on every Debian
-# derivative where the user can run commands with `sudo`. Ubuntu has this as a
-# default, Debian uses a separate root account instead of sudo by default.
+# This script is intended to run on Ubuntu and Fedora, but it should work on
+# every Debian or Red Hat derivative where the user can run commands with
+# `sudo`. Ubuntu and Fedora have this as a default, Debian uses a separate root
+# account instead of sudo by default.
+#
 #
 # In order to run, this script needs:
 # * apt-get or yum
