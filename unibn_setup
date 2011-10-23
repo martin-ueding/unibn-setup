@@ -333,45 +333,54 @@ fi
 # ROOT.
 if [[ "$install_root" == "true" ]] && ! which yum > /dev/null 2>&1
 then
-	echo 'I: Installiere ROOT …'
-
-	root_file=root_v5.30.02.Linux-slc5-gcc4.3.tar.gz
-
-	# Test whether there is any need to download the root package. The checksum is
-	# needed to detect an aborted download.
-	if [[ -f "$root_file" && $(md5sum "$root_file" | awk '{print $1}') == 53b311f490e7673e19c493ccb7216748 ]]
+	if [[ -d /opt/root ]]
 	then
-		echo 'I: ROOT wurde bereits heruntergeladen.'
-	else
-		echo 'I: Lade ROOT herunter …'
-		# Delete the old download so that wget does not try to preserve the broken
-		# download.
-		rm -f "$root_file"
-		wget ftp://root.cern.ch/root/$root_file
-	fi
+		echo 'I: Es scheint, als seie ROOT schon installiert.'
+		read -r -p '-> ROOT neu installieren? [y/N] ' answer
 
-	echo 'I: Entpacke ROOT …'
-	tar -xzf "$root_file"
+		if [[ "$answer" = [nN] || -z "$answer" ]]
+		then
+			echo 'I: ROOT wird *nicht* neu installiert.'
+		else
+			echo 'I: Installiere ROOT …'
 
-	echo 'I: Lösche alte ROOT installation …'
-	sudo rm -rf /opt/root
+			root_file=root_v5.30.02.Linux-slc5-gcc4.3.tar.gz
 
-	echo 'I: Verschiebe ROOT nach /opt …'
-	sudo mv root /opt/
+			# Test whether there is any need to download the root package. The checksum is
+			# needed to detect an aborted download.
+			if [[ -f "$root_file" && $(md5sum "$root_file" | awk '{print $1}') == 53b311f490e7673e19c493ccb7216748 ]]
+			then
+				echo 'I: ROOT wurde bereits heruntergeladen.'
+			else
+				echo 'I: Lade ROOT herunter …'
+				# Delete the old download so that wget does not try to preserve the broken
+				# download.
+				rm -f "$root_file"
+				wget ftp://root.cern.ch/root/$root_file
+			fi
 
-	echo 'I: Passe Rechte der ROOT Installation an …'
-	sudo chown -R root:root /opt/root
+			echo 'I: Entpacke ROOT …'
+			tar -xzf "$root_file"
 
-	# Check whether the environment setting script of the ROOT package is already
-	# included in the .bashrc of the user. This assumes that the user uses bash,
-	# but someone who does this on a fresh Ubuntu installation will certainly do
-	# so.
-	if fgrep '/opt/root/bin/thisroot.sh' $HOME/.bashrc > /dev/null 2>&1
-	then
-		echo 'I: ROOT ist bereits im Environment.'
-	else
-		echo 'I: Füge ROOT zum Environment hinzu …'
-		cat > "$HOME/.bashrc" << EOF
+			echo 'I: Lösche alte ROOT installation …'
+			sudo rm -rf /opt/root
+
+			echo 'I: Verschiebe ROOT nach /opt …'
+			sudo mv root /opt/
+
+			echo 'I: Passe Rechte der ROOT Installation an …'
+			sudo chown -R root:root /opt/root
+
+			# Check whether the environment setting script of the ROOT package is already
+			# included in the .bashrc of the user. This assumes that the user uses bash,
+			# but someone who does this on a fresh Ubuntu installation will certainly do
+			# so.
+			if fgrep '/opt/root/bin/thisroot.sh' $HOME/.bashrc > /dev/null 2>&1
+			then
+				echo 'I: ROOT ist bereits im Environment.'
+			else
+				echo 'I: Füge ROOT zum Environment hinzu …'
+				cat > "$HOME/.bashrc" << EOF
 
 # Setup ROOT environment.
 if [[ -f /opt/root/bin/thisroot.sh ]]
@@ -380,11 +389,12 @@ then
 fi
 EOF
 
-		echo 'I: ROOT wird erst funktionieren, wenn Sie ein neues Terminal öffnen.'
-		echo 'I: Sie können auch mit `. ~/.bashrc` die Konfiguration neu laden.'
-	fi
+			echo 'I: ROOT wird erst funktionieren, wenn Sie ein neues Terminal öffnen.'
+			echo 'I: Sie können auch mit `. ~/.bashrc` die Konfiguration neu laden.'
+		fi
 
-	echo
+		echo
+	fi
 fi
 
 
