@@ -364,9 +364,15 @@ then
 		echo 'I: ROOT ist bereits im Environment.'
 	else
 		echo 'I: Füge ROOT zum Environment hinzu …'
-		echo >> "$HOME/.bashrc"
-		echo '# Setup ROOT environment.' >> "$HOME/.bashrc"
-		echo '. /opt/root/bin/thisroot.sh' >> "$HOME/.bashrc"
+		cat > "$HOME/.bashrc" << EOF
+
+# Setup ROOT environment.
+if [[ -f /opt/root/bin/thisroot.sh ]]
+then
+	. /opt/root/bin/thisroot.sh'
+fi
+EOF
+
 		echo 'I: ROOT wird erst funktionieren, wenn Sie ein neues Terminal öffnen.'
 		echo 'I: Sie können auch mit `. ~/.bashrc` die Konfiguration neu laden.'
 	fi
