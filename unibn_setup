@@ -56,6 +56,9 @@
 # * apt-get or yum
 # * awk
 # * bash
+# * cat
+# * chmod
+# * chown
 # * grep
 # * md5sum
 # * sudo
