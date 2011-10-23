@@ -179,44 +179,6 @@ echo
 
 
 ###############################################################################
-#                    Ask for Bonn university user account.                    #
-###############################################################################
-
-if [[ "$install_vpn" == "true" ]]
-then
-	echo 'I: Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:'
-	echo 'I: Ihr Passwort wird beim Tippen nicht angezeigt.'
-
-	user=
-	password=
-
-	# Poll the user for a user name until he enters one.
-	while [[ -z "$user" ]]
-	do
-		read -r -p '-> Uni Bonn (HRZ) Benutzername: ' user
-
-		if [[ -z "$user" ]]
-		then
-			echo 'E: Es wurde kein Benutzername eingegeben.'
-		fi
-	done
-
-	# Poll the user for a password until he enters one.
-	while [[ -z "$password" ]]
-	do
-		read -r -s -p '-> Uni Bonn (HRZ) Passwort: ' password
-
-		if [[ -z "$password" ]]
-		then
-			echo 'E: Es wurde kein Passwort eingegeben.'
-		fi
-	done
-
-	echo
-fi
-
-
-###############################################################################
 #                        Install packages via apt-get.                        #
 ###############################################################################
 
@@ -249,6 +211,7 @@ elif which yum > /dev/null 2>&1
 then
 	sudo yum -y install ${packages_fedora[@]}
 fi
+
 
 ###############################################################################
 #                          Create VPN login script.                           #
@@ -296,12 +259,57 @@ EOF
 
 
 ###############################################################################
+#                    Ask for Bonn university user account.                    #
 #                        Create config file for vpnc.                         #
 ###############################################################################
 
-	echo 'I: Erstelle Konfigurationsdatei für vpnc, den VPN client …'
+if [[ "$install_vpn" == "true" ]]
+then
+	if [[ -f "$vpn_config_file" ]]
+	then
+		echo 'I: Es existiert bereits eine vpnc Konfigurationsdatei.'
+		echo -n 'I: Benutzer ist '
+		grep username "$vpn_config_file" | awk '{print $3}'
 
-	cat << EOF | sudo tee "$vpn_config_file" > /dev/null
+		read -r -p '-> Datei neu anlegen? [y/N] ' answer
+
+		if [[ "$answer" = [nN] || -z "$answer" ]]
+		then
+			echo 'I: Konfigurationsdatei wird *nicht* neu angelegt.'
+		else
+			echo 'I: Konfigurationsdatei wird neu angelegt.'
+
+			echo 'I: Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:'
+			echo 'I: Ihr Passwort wird beim Tippen nicht angezeigt.'
+
+			user=
+			password=
+
+			# Poll the user for a user name until he enters one.
+			while [[ -z "$user" ]]
+			do
+				read -r -p '-> Uni Bonn (HRZ) Benutzername: ' user
+
+				if [[ -z "$user" ]]
+				then
+					echo 'E: Es wurde kein Benutzername eingegeben.'
+				fi
+			done
+
+			# Poll the user for a password until he enters one.
+			while [[ -z "$password" ]]
+			do
+				read -r -s -p '-> Uni Bonn (HRZ) Passwort: ' password
+
+				if [[ -z "$password" ]]
+				then
+					echo 'E: Es wurde kein Passwort eingegeben.'
+				fi
+			done
+
+			echo 'I: Erstelle Konfigurationsdatei für vpnc, den VPN client …'
+
+			cat << EOF | sudo tee "$vpn_config_file" > /dev/null
 IPSec gateway 131.220.224.201
 IPSec ID unibn-wlan
 IPSec secret Ne\$e!
@@ -309,7 +317,11 @@ Xauth username $user
 Xauth password $password
 EOF
 
-	sudo chown root:root "$vpn_config_file"
+			sudo chown root:root "$vpn_config_file"
+		fi
+	fi
+
+	echo
 fi
 
 
