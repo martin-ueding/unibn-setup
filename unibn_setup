@@ -391,6 +391,7 @@ then
 		if [[ -f "$HOME/.bashrc" ]]
 		then
 			cp "$HOME/.bashrc" "$HOME/.bashrc.bak"
+			'I: Sicherungskopie von .bashrc in .bashrc.bak angelegt.'
 		fi
 		cat >> "$HOME/.bashrc" << EOF
 
