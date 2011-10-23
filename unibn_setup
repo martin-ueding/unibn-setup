@@ -300,6 +300,7 @@ EOF
 			while [[ -z "$password" ]]
 			do
 				read -r -s -p '-> Uni Bonn (HRZ) Passwort: ' password
+				echo
 
 				if [[ -z "$password" ]]
 				then
