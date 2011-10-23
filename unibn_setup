@@ -51,10 +51,13 @@
 # default, Debian uses a separate root account instead of sudo by default.
 #
 # In order to run, this script needs:
-# * apt-get
+# * apt-get or yum
+# * bash
 # * md5sum
 # * sudo
+# * tar
 # * wget
+# * which
 
 
 ###############################################################################
