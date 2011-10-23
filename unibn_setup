@@ -144,37 +144,40 @@ fi
 #                    Ask for Bonn university user account.                    #
 ###############################################################################
 
-echo 'I: Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:'
-echo 'I: Warnung: Ihr Passwort wird im Klartext angezeigt und später bei der'
-echo 'I: Erstellung der Konfigurationsdatei noch einmal angezeigt. Benutzen Sie'
-echo 'I: Skript daher bitte nicht, wenn andere Ihr Passwort sehen könnten.'
+if [[ "$install_vpn" == "true" ]]
+then
+	echo 'I: Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:'
+	echo 'I: Warnung: Ihr Passwort wird im Klartext angezeigt und später bei der'
+	echo 'I: Erstellung der Konfigurationsdatei noch einmal angezeigt. Benutzen Sie'
+	echo 'I: Skript daher bitte nicht, wenn andere Ihr Passwort sehen könnten.'
 
-user=
-password=
+	user=
+	password=
 
-# Poll the user for a user name until he enters one.
-while [[ -z "$user" ]]
-do
-	read -r -p '-> Uni Bonn (HRZ) Benutzername: ' user
+	# Poll the user for a user name until he enters one.
+	while [[ -z "$user" ]]
+	do
+		read -r -p '-> Uni Bonn (HRZ) Benutzername: ' user
 
-	if [[ -z "$user" ]]
-	then
-		echo 'E: Es wurde kein Benutzername eingegeben.'
-	fi
-done
+		if [[ -z "$user" ]]
+		then
+			echo 'E: Es wurde kein Benutzername eingegeben.'
+		fi
+	done
 
-# Poll the user for a password until he enters one.
-while [[ -z "$password" ]]
-do
-	read -r -p '-> Uni Bonn (HRZ) Passwort: ' password
+	# Poll the user for a password until he enters one.
+	while [[ -z "$password" ]]
+	do
+		read -r -p '-> Uni Bonn (HRZ) Passwort: ' password
 
-	if [[ -z "$password" ]]
-	then
-		echo 'E: Es wurde kein Passwort eingegeben.'
-	fi
-done
+		if [[ -z "$password" ]]
+		then
+			echo 'E: Es wurde kein Passwort eingegeben.'
+		fi
+	done
 
-echo
+	echo
+fi
 
 
 ###############################################################################
@@ -186,16 +189,25 @@ echo 'I: Dies ist das Passwort für Ihren Benutzeraccount auf diesem Rechner.'
 echo
 echo 'I: Installiere vpn client, emacs, LaTeX, gnuplot …'
 
-sudo apt-get -y install vpnc emacs texlive-latex-base gnuplot
+packages=( emacs texlive-latex-base gnuplot )
+
+if [[ "$install_vpn" == "true" ]]
+then
+	packages=( vpnc ${packages[@]} )
+fi
+
+sudo apt-get -y install ${packages[@]}
 
 
 ###############################################################################
 #                          Create VPN login script.                           #
 ###############################################################################
 
-echo 'I: Erstelle Skript für automatische Einwahl ins VPN wenn im WLAN bonnet …'
+if [[ "$install_vpn" == "true" ]]
+then
+	echo 'I: Erstelle Skript für automatische Einwahl ins VPN wenn im WLAN bonnet …'
 
-cat << EOF | sudo tee /etc/NetworkManager/dispatcher.d/99bonnet
+	cat << EOF | sudo tee /etc/NetworkManager/dispatcher.d/99bonnet
 #!/bin/bash
 # Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
@@ -228,17 +240,17 @@ else
 fi
 EOF
 
-sudo chmod 755 /etc/NetworkManager/dispatcher.d/99bonnet
-sudo chown root:root /etc/NetworkManager/dispatcher.d/99bonnet
+	sudo chmod 755 /etc/NetworkManager/dispatcher.d/99bonnet
+	sudo chown root:root /etc/NetworkManager/dispatcher.d/99bonnet
 
 
 ###############################################################################
 #                        Create config file for vpnc.                         #
 ###############################################################################
 
-echo 'I: Erstelle Konfigurationsdatei für vpnc, den VPN client …'
+	echo 'I: Erstelle Konfigurationsdatei für vpnc, den VPN client …'
 
-cat << EOF | sudo tee /etc/unibn-wlan.conf
+	cat << EOF | sudo tee /etc/unibn-wlan.conf
 IPSec gateway 131.220.224.201
 IPSec ID unibn-wlan
 IPSec secret Ne\$e!
@@ -246,56 +258,60 @@ Xauth username $user
 Xauth password $password
 EOF
 
-sudo chown root:root /etc/unibn-wlan.conf
-
+	sudo chown root:root /etc/unibn-wlan.conf
+fi
 
 ###############################################################################
 #                      Install ROOT statistics package.                       #
 ###############################################################################
 
-echo 'I: Installiere ROOT …'
-
-root_file=root_v5.30.02.Linux-slc5-gcc4.3.tar.gz
-
-# Test whether there is any need to download the root package. The checksum is
-# needed to detect an aborted download.
-if [[ -f "$root_file" && $(md5sum "$root_file" | awk '{print $1}') == 53b311f490e7673e19c493ccb7216748 ]]
+if [[ "$install_root" == "true" ]]
 then
-	echo 'I: ROOT wurde bereits heruntergeladen.'
-else
-	echo 'I: Lade ROOT herunter …'
-	# Delete the old download so that wget does not try to preserve the broken
-	# download.
-	rm -f "$root_file"
-	wget ftp://root.cern.ch/root/$root_file
-fi
 
-echo 'I: Entpacke ROOT …'
-tar -xzf "$root_file"
+	echo 'I: Installiere ROOT …'
 
-echo 'I: Lösche alte ROOT installation …'
-sudo rm -rf /opt/root
+	root_file=root_v5.30.02.Linux-slc5-gcc4.3.tar.gz
 
-echo 'I: Verschiebe ROOT nach /opt …'
-sudo mv root /opt/
+	# Test whether there is any need to download the root package. The checksum is
+	# needed to detect an aborted download.
+	if [[ -f "$root_file" && $(md5sum "$root_file" | awk '{print $1}') == 53b311f490e7673e19c493ccb7216748 ]]
+	then
+		echo 'I: ROOT wurde bereits heruntergeladen.'
+	else
+		echo 'I: Lade ROOT herunter …'
+		# Delete the old download so that wget does not try to preserve the broken
+		# download.
+		rm -f "$root_file"
+		wget ftp://root.cern.ch/root/$root_file
+	fi
 
-echo 'I: Passe Rechte der ROOT Installation an …'
-sudo chown -R root:root /opt/root
+	echo 'I: Entpacke ROOT …'
+	tar -xzf "$root_file"
 
-# Check whether the environment setting script of the ROOT package is already
-# included in the .bashrc of the user. This assumes that the user uses bash,
-# but someone who does this on a fresh Ubuntu installation will certainly do
-# so.
-if fgrep '/opt/root/bin/thisroot.sh' $HOME/.bashrc > /dev/null 2>&1
-then
-	echo 'I: ROOT ist bereits im Environment.'
-else
-	echo 'I: Füge ROOT zum Environment hinzu …'
-	echo >> "$HOME/.bashrc"
-	echo '# Setup ROOT environment.' >> "$HOME/.bashrc"
-	echo '. /opt/root/bin/thisroot.sh' >> "$HOME/.bashrc"
-	echo 'I: ROOT wird erst funktionieren, wenn Sie ein neues Terminal öffnen.'
-	echo 'I: Sie können auch mit `. ~/.bashrc` die Konfiguration neu laden.'
+	echo 'I: Lösche alte ROOT installation …'
+	sudo rm -rf /opt/root
+
+	echo 'I: Verschiebe ROOT nach /opt …'
+	sudo mv root /opt/
+
+	echo 'I: Passe Rechte der ROOT Installation an …'
+	sudo chown -R root:root /opt/root
+
+	# Check whether the environment setting script of the ROOT package is already
+	# included in the .bashrc of the user. This assumes that the user uses bash,
+	# but someone who does this on a fresh Ubuntu installation will certainly do
+	# so.
+	if fgrep '/opt/root/bin/thisroot.sh' $HOME/.bashrc > /dev/null 2>&1
+	then
+		echo 'I: ROOT ist bereits im Environment.'
+	else
+		echo 'I: Füge ROOT zum Environment hinzu …'
+		echo >> "$HOME/.bashrc"
+		echo '# Setup ROOT environment.' >> "$HOME/.bashrc"
+		echo '. /opt/root/bin/thisroot.sh' >> "$HOME/.bashrc"
+		echo 'I: ROOT wird erst funktionieren, wenn Sie ein neues Terminal öffnen.'
+		echo 'I: Sie können auch mit `. ~/.bashrc` die Konfiguration neu laden.'
+	fi
 fi
 
 
