@@ -393,7 +393,7 @@ then
 # Setup ROOT environment.
 if [[ -f /opt/root/bin/thisroot.sh ]]
 then
-	. /opt/root/bin/thisroot.sh'
+	. /opt/root/bin/thisroot.sh
 fi
 EOF
 
