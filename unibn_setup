@@ -112,9 +112,7 @@ if which apt-get > /dev/null 2>&1
 then
 	echo 'I:     sudo apt-get -y remove emacs texlive-latex-base gnuplot'
 	echo 'I:     sudo apt-get -y autoremove'
-fi
-
-if which yum > /dev/null 2>&1
+elif which yum > /dev/null 2>&1
 then
 	echo 'I:     sudo yum -y erase emacs texlive-latex gnuplot'
 fi
@@ -127,9 +125,7 @@ echo 'I:     sudo rm -f /etc/NetworkManager/dispatcher.d/99bonnet'
 if which apt-get > /dev/null 2>&1
 then
 	echo 'I:     sudo apt-get -y remove vpnc'
-fi
-
-if which yum > /dev/null 2>&1
+elif which yum > /dev/null 2>&1
 then
 	echo 'I:     sudo yum -y erase vpnc'
 fi
@@ -140,9 +136,7 @@ echo 'I: Entfernen von ROOT:'
 if which apt-get > /dev/null 2>&1
 then
 	echo 'I:     sudo rm -rf /opt/root'
-fi
-
-if which yum > /dev/null 2>&1
+elif which yum > /dev/null 2>&1
 then
 	echo 'I:     sudo yum -y erase root'
 fi
@@ -244,14 +238,11 @@ then
 	packages_fedora=( root ${packages_fedora[@]} )
 fi
 
-# Install packages with apt-get if it is there.
+# Install the packages with whatever package manager can be found.
 if which apt-get > /dev/null 2>&1
 then
 	sudo apt-get -y install ${packages_debian[@]}
-fi
-
-# Install packages with yum if it is there.
-if which yum > /dev/null 2>&1
+elif which yum > /dev/null 2>&1
 then
 	sudo yum -y install ${packages_fedora[@]}
 fi
@@ -327,7 +318,6 @@ fi
 # ROOT.
 if [[ "$install_root" == "true" ]] && ! which yum > /dev/null 2>&1
 then
-
 	echo 'I: Installiere ROOT …'
 
 	root_file=root_v5.30.02.Linux-slc5-gcc4.3.tar.gz
