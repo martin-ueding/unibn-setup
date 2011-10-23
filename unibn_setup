@@ -386,7 +386,7 @@ then
 			echo 'I: ROOT ist bereits im Environment.'
 		else
 			echo 'I: Füge ROOT zum Environment hinzu …'
-			cat > "$HOME/.bashrc" << EOF
+			cat >> "$HOME/.bashrc" << EOF
 
 # Setup ROOT environment.
 if [[ -f /opt/root/bin/thisroot.sh ]]
