@@ -143,6 +143,8 @@ else
 	echo 'I: ROOT *nicht* wird installiert.'
 fi
 
+echo
+
 
 ###############################################################################
 #                    Ask for Bonn university user account.                    #
