@@ -130,7 +130,14 @@ then
 fi
 echo
 echo 'I: Entfernen von ROOT:'
-echo 'I:     sudo rm -rf /opt/root'
+if which apt-get > /dev/null 2>&1
+then
+	echo 'I:     sudo rm -rf /opt/root'
+fi
+if which yum > /dev/null 2>&1
+then
+	echo 'I:     sudo yum -y erase root'
+fi
 echo
 
 
