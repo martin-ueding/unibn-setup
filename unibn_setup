@@ -113,6 +113,8 @@ echo
 echo 'I: Entfernen von ROOT:'
 echo 'I:     sudo rm -rf /opt/root'
 echo
+echo 'I: Falls Sie Fedora benutzen, benutzen Sie bitte `yum` anstelle von `apt-get`.'
+echo
 
 
 ###############################################################################
@@ -193,15 +195,24 @@ echo 'I: Dies ist das Passwort für Ihren Benutzeraccount auf diesem Rechner.'
 echo
 echo 'I: Installiere vpn client, emacs, LaTeX, gnuplot …'
 
-packages=( emacs texlive-latex-base gnuplot )
+packages_debian=( emacs texlive-latex-base gnuplot )
+packages_fedora=( emacs texlive-latex gnuplot )
 
 if [[ "$install_vpn" == "true" ]]
 then
-	packages=( vpnc ${packages[@]} )
+	packages_debian=( vpnc ${packages_debian[@]} )
+	packages_fedora=( vpnc ${packages_fedora[@]} )
 fi
 
-sudo apt-get -y install ${packages[@]}
+if which apt-get > /dev/null 2>&1
+then
+	sudo apt-get -y install ${packages_debian[@]}
+fi
 
+if which yum > /dev/null 2>&1
+then
+	sudo yum -y install ${packages_fedora[@]}
+fi
 
 ###############################################################################
 #                          Create VPN login script.                           #
