@@ -125,8 +125,10 @@ read -r -p '-> VPN Zugang einrichten? [Y/n] ' answer
 if [[ "$answer" = [yYjJ] || -z "$answer" ]]
 then
 	install_vpn=true
+	echo 'I: VPN wird eingerichtet.'
 else
 	install_vpn=false
+	echo 'I: VPN *nicht* wird eingerichtet.'
 fi
 
 
@@ -135,8 +137,10 @@ read -r -p '-> ROOT Statistik installieren? [Y/n] ' answer
 if [[ "$answer" = [yYjJ] || -z "$answer" ]]
 then
 	install_root=true
+	echo 'I: ROOT wird installiert.'
 else
 	install_root=false
+	echo 'I: ROOT *nicht* wird installiert.'
 fi
 
 
