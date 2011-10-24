@@ -390,17 +390,18 @@ then
 	# included in the .bashrc of the user. This assumes that the user uses bash,
 	# but someone who does this on a fresh Ubuntu installation will certainly do
 	# so.
-	if fgrep '/opt/root/bin/thisroot.sh' $HOME/.bashrc > /dev/null 2>&1
+	profile_file="/etc/bash.bashrc"
+	if fgrep '/opt/root/bin/thisroot.sh' "$profile_file" > /dev/null 2>&1
 	then
 		echo 'I: ROOT ist bereits im Environment.'
 	else
 		echo 'I: Füge ROOT zum Environment hinzu …'
-		if [[ -f "$HOME/.bashrc" ]]
+		if [[ -f "$profile_file" ]]
 		then
-			cp "$HOME/.bashrc" "$HOME/.bashrc.bak"
-			'I: Sicherungskopie von .bashrc in .bashrc.bak angelegt.'
+			cp "$profile_file" "$profile_file.bak"
+			"I: Sicherungskopie von $profile_file in $profile_file.bak angelegt."
 		fi
-		cat >> "$HOME/.bashrc" << EOF
+		cat >> "$profile_file" << EOF
 
 # Setup ROOT environment.
 if [[ -f /opt/root/bin/thisroot.sh ]]
@@ -410,7 +411,7 @@ fi
 EOF
 
 		echo 'I: ROOT wird erst funktionieren, wenn Sie ein neues Terminal öffnen.'
-		echo 'I: Sie können auch mit `. ~/.bashrc` die Konfiguration neu laden.'
+		echo "I: Sie können auch mit `. $profile_file` die Konfiguration neu laden."
 	fi
 
 	echo
