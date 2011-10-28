@@ -413,7 +413,7 @@ fi
 EOF
 
 		echo 'I: ROOT wird erst funktionieren, wenn Sie ein neues Terminal öffnen.'
-		echo "I: Sie können auch mit `. $profile_file` die Konfiguration neu laden."
+		echo "I: Sie können auch mit . $profile_file die Konfiguration neu laden."
 	fi
 
 	echo
