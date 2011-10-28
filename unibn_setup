@@ -401,7 +401,7 @@ then
 		if [[ -f "$profile_file" ]]
 		then
 			sudo cp "$profile_file" "$profile_file.bak"
-			"I: Sicherungskopie von $profile_file in $profile_file.bak angelegt."
+			echo "I: Sicherungskopie von $profile_file in $profile_file.bak angelegt."
 		fi
 		cat >> "$profile_file" << EOF
 
