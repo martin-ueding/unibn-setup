@@ -377,6 +377,9 @@ then
 		echo 'I: Entpacke ROOT …'
 		tar -xzf "$root_file"
 
+		echo 'I: Lösche ROOT Download …'
+		rm -f "$root_file"
+
 		echo 'I: Lösche alte ROOT installation …'
 		sudo rm -rf /opt/root
 
