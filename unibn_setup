@@ -403,7 +403,7 @@ then
 			sudo cp "$profile_file" "$profile_file.bak"
 			echo "I: Sicherungskopie von $profile_file in $profile_file.bak angelegt."
 		fi
-		cat >> "$profile_file" << EOF
+		cat << EOF | sudo tee "$profile_file"  > /dev/null
 
 # Setup ROOT environment.
 if [[ -f /opt/root/bin/thisroot.sh ]]
