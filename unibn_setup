@@ -272,6 +272,8 @@ EOF
 #                        Create config file for vpnc.                         #
 ###############################################################################
 
+	answer=yes
+
 	if [[ -f "$vpn_config_file" ]]
 	then
 		echo 'I: Es existiert bereits eine vpnc Konfigurationsdatei.'
@@ -279,45 +281,46 @@ EOF
 		grep username "$vpn_config_file" | awk '{print $3}'
 
 		read -r -p '-> Datei neu anlegen? [y/N] ' answer
+	fi
 
-		if [[ "$answer" = [nN] || -z "$answer" ]]
-		then
-			echo 'I: Konfigurationsdatei wird *nicht* neu angelegt.'
-		else
-			echo 'I: Konfigurationsdatei wird neu angelegt.'
+	if [[ "$answer" = [nN] || -z "$answer" ]]
+	then
+		echo 'I: Konfigurationsdatei wird *nicht* neu angelegt.'
+	else
+		echo 'I: Konfigurationsdatei wird neu angelegt.'
 
-			echo 'I: Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:'
-			echo 'I: Ihr Passwort wird beim Tippen nicht angezeigt.'
+		echo 'I: Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:'
+		echo 'I: Ihr Passwort wird beim Tippen nicht angezeigt.'
 
-			user=
-			password=
+		user=
+		password=
 
-			# Poll the user for a user name until he enters one.
-			while [[ -z "$user" ]]
-			do
-				read -r -p '-> Uni Bonn (HRZ) Benutzername: ' user
+		# Poll the user for a user name until he enters one.
+		while [[ -z "$user" ]]
+		do
+			read -r -p '-> Uni Bonn (HRZ) Benutzername: ' user
 
-				if [[ -z "$user" ]]
-				then
-					echo 'E: Es wurde kein Benutzername eingegeben.'
-				fi
-			done
+			if [[ -z "$user" ]]
+			then
+				echo 'E: Es wurde kein Benutzername eingegeben.'
+			fi
+		done
 
-			# Poll the user for a password until he enters one.
-			while [[ -z "$password" ]]
-			do
-				read -r -s -p '-> Uni Bonn (HRZ) Passwort: ' password
-				echo
+		# Poll the user for a password until he enters one.
+		while [[ -z "$password" ]]
+		do
+			read -r -s -p '-> Uni Bonn (HRZ) Passwort: ' password
+			echo
 
-				if [[ -z "$password" ]]
-				then
-					echo 'E: Es wurde kein Passwort eingegeben.'
-				fi
-			done
+			if [[ -z "$password" ]]
+			then
+				echo 'E: Es wurde kein Passwort eingegeben.'
+			fi
+		done
 
-			echo 'I: Erstelle Konfigurationsdatei für vpnc, den VPN client …'
+		echo 'I: Erstelle Konfigurationsdatei für vpnc, den VPN client …'
 
-			cat << EOF | sudo tee "$vpn_config_file" > /dev/null
+		cat << EOF | sudo tee "$vpn_config_file" > /dev/null
 IPSec gateway 131.220.224.201
 IPSec ID unibn-wlan
 IPSec secret Ne\$e!
@@ -325,8 +328,7 @@ Xauth username $user
 Xauth password $password
 EOF
 
-			sudo chown root:root "$vpn_config_file"
-		fi
+		sudo chown root:root "$vpn_config_file"
 	fi
 
 	echo
@@ -398,7 +400,7 @@ then
 		echo 'I: Füge ROOT zum Environment hinzu …'
 		if [[ -f "$profile_file" ]]
 		then
-			cp "$profile_file" "$profile_file.bak"
+			sudo cp "$profile_file" "$profile_file.bak"
 			"I: Sicherungskopie von $profile_file in $profile_file.bak angelegt."
 		fi
 		cat >> "$profile_file" << EOF
