@@ -1,6 +1,9 @@
 #!/bin/bash
 # Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
+# This file is published under the terms of the same Modified BSD License that
+# the unibn_setup script carries.
+
 set -e
 set -u
 
