@@ -4,7 +4,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: unibn_setup:104
+#: unibn_setup:134
 msgid ""
 "This script installs software needed for the EDV (computer science) class."
 msgstr ""
