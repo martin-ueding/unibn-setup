@@ -57,6 +57,7 @@
 # In order to run, this script needs:
 # * apt-get or yum
 # * awk
+# * base64
 # * bash
 # * cat
 # * chmod
@@ -65,6 +66,7 @@
 # * md5sum
 # * sudo
 # * tar
+# * tee
 # * wget (at least on non-Fedora)
 # * which
 
