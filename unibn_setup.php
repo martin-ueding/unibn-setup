@@ -1,3 +1,4 @@
+#!/usr/bin/php
 #!/bin/bash
 # vim: ft=sh
 
