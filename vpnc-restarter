@@ -4,12 +4,11 @@
 set -e
 set -u
 
-# Cleanup for exit.
+# Cleanup for exit, disconnect from the VPN.
 destructor() {
 	vpnc-disconnect
 }
 
-# If this deamon is exiting, close out of the VPN.
 trap destructor EXIT
 
 # Start the VPN client in the foreground and restart it whenever it dies.
