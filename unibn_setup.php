@@ -355,12 +355,12 @@ then
 	then
 		root_file=root_v5.30.02.Linux-slc5-gcc4.3.tar.gz
 
-		# Test whether there is any need to download the root package. The checksum is
-		# needed to detect an aborted download.
+		# Test whether there is any need to download the root package. The
+		# checksum is needed to detect an aborted download.
 		if [[ ! -f "$root_file" || ! $(md5sum "$root_file" | awk '{print $1}') == 53b311f490e7673e19c493ccb7216748 ]]
 		then
-			# Delete the old download so that wget does not try to preserve the broken
-			# download.
+			# Delete the old download so that wget does not try to preserve the
+			# broken download.
 			rm -f "$root_file"
 			wget ftp://root.cern.ch/root/$root_file
 		fi
@@ -372,10 +372,10 @@ then
 		sudo chown -R root:root /opt/root
 	fi
 
-	# Check whether the environment setting script of the ROOT package is already
-	# included in the .bashrc of the user. This assumes that the user uses bash,
-	# but someone who does this on a fresh Ubuntu installation will certainly do
-	# so.
+	# Check whether the environment setting script of the ROOT package is
+	# already included in the .bashrc of the user. This assumes that the user
+	# uses bash, but someone who does this on a fresh Ubuntu installation will
+	# certainly do so.
 	profile_file="/etc/bash.bashrc"
 	if ! fgrep '/opt/root/bin/thisroot.sh' "$profile_file" > /dev/null 2>&1
 	then
