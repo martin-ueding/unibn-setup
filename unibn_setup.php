@@ -128,11 +128,9 @@ echo '|                                                                         
 echo '|               Einrichtung des VPN für das Netzwerk "bonnet"                 |'
 echo '+-----------------------------------------------------------------------------+'
 echo
-echo $"I: Falls Sie die Installation aus irgendeinem Grund abbrechen möchten, drücken"
-echo $"I: Sie Strg-C."
+echo $"I: Falls Sie die Installation aus irgendeinem Grund abbrechen möchten, drücken Sie Strg-C."
 echo
-echo $"I: Um die Aktionen dieses Skripts rückgängig zu machen, führen Sie folgende"
-echo $"I: Befehle aus:"
+echo $"I: Um die Aktionen dieses Skripts rückgängig zu machen, führen Sie folgende Befehle aus:"
 echo
 echo $"I: Entfernen der per Paketmanagement installierten Software:"
 
