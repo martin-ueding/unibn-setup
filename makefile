@@ -1,7 +1,8 @@
 # Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
 unibn_setup: unibn_setup.php 99bonnet vpnc-restarter CHANGELOG
-	php $< > $@
+	php $< > $@.build
+	mv $@.build $@
 	chmod +x $@
 
 CHANGELOG: .git/HEAD
