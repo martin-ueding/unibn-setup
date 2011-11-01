@@ -91,6 +91,8 @@ vpn_dispatcher_file=/etc/NetworkManager/dispatcher.d/99bonnet
 vpn_config_file="$HOME/.vpnc/unibn-wlan.conf"
 vpn_restarter_file="/sbin/vpnc-restarter"
 
+mo_file="/usr/share/locale/de/LC_MESSAGES/unibn_setup.mo"
+
 TEXTDOMAIN=unibn_setup
 
 
@@ -115,7 +117,7 @@ esac
 #                         Install localisation files.                         #
 ###############################################################################
 
-cat << EOF | base64 -d | sudo tee "/usr/share/locale/de/LC_MESSAGES/unibn_setup.mo" > /dev/null
+cat << EOF | base64 -d | sudo tee "$mo_file" > /dev/null
 <?php readfile('de.mo.asc'); ?>
 EOF
 
