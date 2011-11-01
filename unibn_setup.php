@@ -213,26 +213,26 @@ echo
 echo 'I: Dieses Skript wird gleich nach dem [sudo] Passwort fragen.'
 echo 'I: Dies ist das Passwort für Ihren Benutzeraccount auf diesem Rechner.'
 
+packages_debian=( )
+packages_fedora=( )
+
 if [[ "$install_other" == "true" ]]
 then
 	packages_debian=( emacs texlive-latex-base gnuplot )
 	packages_fedora=( emacs texlive-latex gnuplot )
-else
-	packages_debian=()
-	packages_fedora=()
 fi
 
 if [[ "$install_vpn" == "true" ]]
 then
-	packages_debian=( vpnc ${packages_debian[@]} )
-	packages_fedora=( vpnc ${packages_fedora[@]} )
+	packages_debian=( vpnc ${packages_debian[@]:-} )
+	packages_fedora=( vpnc ${packages_fedora[@]:-} )
 fi
 
 # Fedora has a ROOT package, so this is used instead of the self-made install
 # from the ROOT website.
 if [[ "$install_root" == "true" ]]
 then
-	packages_fedora=( root ${packages_fedora[@]} )
+	packages_fedora=( root ${packages_fedora[@]:-} )
 fi
 
 echo
