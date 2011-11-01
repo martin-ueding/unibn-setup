@@ -7,12 +7,12 @@ msgstr ""
 #: unibn_setup:102
 msgid ""
 "This script installs software needed for the EDV (computer science) class."
-msgstr ""
+msgstr "Dieses Skript installiert Software, die für die EDV Vorlesung benötigt wird."
 
 #: vpnc-restarter:21
 msgid "Connecting to VPN …"
-msgstr ""
+msgstr "Verbinde mit VPN …"
 
 #: vpnc-restarter:28
 msgid "Disconnecting from VPN …"
-msgstr ""
+msgstr "Trenne VPN …"
