@@ -113,9 +113,8 @@ esac
 #                         Install localisation files.                         #
 ###############################################################################
 
-cat << EOF | sudo tee "/usr/share/locale/de/LC_MESSAGES/unibn_setup.mo" > /dev/null
-<?php readfile('de.mo'); ?>
-
+cat << EOF | base64 -d | sudo tee "/usr/share/locale/de/LC_MESSAGES/unibn_setup.mo" > /dev/null
+<?php readfile('de.mo.asc'); ?>
 EOF
 
 ###############################################################################
