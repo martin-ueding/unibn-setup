@@ -10,19 +10,9 @@ then
 	exit 1
 fi
 
-# Cleanup for exit, disconnect from the VPN.
-destructor() {
-	vpnc-disconnect
-}
-
-trap destructor EXIT
-
 # Start the VPN client in the foreground and restart it whenever it dies.
 while :
 do
+	echo "Starting vpnc in the foreground."
 	vpnc --no-detach "$HOME/.vpnc/unibn-wlan.conf"
 done
-
-# This point in the code is virtually unreachable, the VPN will be closed out
-# of with the exit hook, so there should not be anything dangling if this
-# script is killed at some point.
