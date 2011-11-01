@@ -4,6 +4,11 @@
 # This file is published under the terms of the same Modified BSD License that
 # the unibn_setup script carries.
 
+# Since vpnc sometimes dies, this script spawns a new instance whenever it does
+# that. When this script is killed by the 99bonnet script, it will disconnect
+# from the VPN. As a little treat, a Gnome notification is displayed whenever
+# something changes.
+
 TEXTDOMAIN=unibn_setup
 
 if (( UID != 0 ))

@@ -4,6 +4,14 @@
 # This file is published under the terms of the same Modified BSD License that
 # the unibn_setup script carries.
 
+# This script will be called by the NetworkManager dispatcher daemon whenever a
+# network device is connected or disconnected. Since only the wireless
+# connection "bonnet" is relevant, it is checked whether the network device in
+# question is the wireless one and whether the SSID really is "bonnet".
+#
+# In order to start the VPN client, this script relies on its helper, the
+# vpnc-restarter which is installed by unibn_setup as well.
+
 set -e
 set -u
 
