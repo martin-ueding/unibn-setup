@@ -7,7 +7,7 @@ unibn_setup: unibn_setup.php 99bonnet vpnc-restarter CHANGELOG
 
 CHANGELOG: .git/HEAD
 	git changelog | sed 's/.*/# &/' > $@.build
-	mv $@.build > $@
+	mv $@.build $@
 
 l10n: unibn_setup.pot
 
