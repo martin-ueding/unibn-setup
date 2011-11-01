@@ -28,5 +28,6 @@ de.mo: de.po
 clean:
 	$(RM) unibn_setup
 	$(RM) *.build
-	$(RM) de.mo de.mo.asc
+	$(RM) de.mo
 	$(RM) unibn_setup.pot
+	$(RM) *.asc
