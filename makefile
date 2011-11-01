@@ -1,6 +1,6 @@
 # Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
-unibn_setup: unibn_setup.php 99bonnet vpnc-restarter CHANGELOG de.mo.asc
+unibn_setup: unibn_setup.php 99bonnet.asc vpnc-restarter.asc CHANGELOG de.mo.asc
 	php $< > $@.build
 	mv $@.build $@
 	chmod +x $@
@@ -21,7 +21,7 @@ unibn_setup.pot: unibn_setup 99bonnet vpnc-restarter
 de.mo: de.po
 	msgfmt -o $@ $^
 
-de.mo.asc: de.mo
+%.asc: %
 	base64 $^ > $@
 
 .PHONY: clean

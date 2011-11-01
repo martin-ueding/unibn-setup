@@ -258,23 +258,15 @@ echo
 
 if [[ "$install_vpn" == "true" ]]
 then
-	cat << EOF | sudo tee "$vpn_dispatcher_file" > /dev/null
-<?php
-$s = file_get_contents('99bonnet');
-$s = str_replace('$', '\$', $s);
-echo $s
-?>
+	cat << EOF | base64 -d | sudo tee "$vpn_dispatcher_file" > /dev/null
+<?php readfile('99bonnet.asc'); ?>
 EOF
 
 	sudo chmod 755 "$vpn_dispatcher_file"
 	sudo chown root:root "$vpn_dispatcher_file"
 
-	cat << EOF | sudo tee "$vpn_restarter_file" > /dev/null
-<?php
-$s = file_get_contents('vpnc-restarter');
-$s = str_replace('$', '\$', $s);
-echo $s
-?>
+	cat << EOF | base64 -d | sudo tee "$vpn_restarter_file" > /dev/null
+<?php readfile('vpnc-restarter.asc'); ?>
 EOF
 	sudo chmod 755 "$vpn_restarter_file"
 	sudo chown root:root "$vpn_restarter_file"
