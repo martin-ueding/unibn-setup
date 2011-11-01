@@ -212,8 +212,6 @@ echo
 
 echo 'I: Dieses Skript wird gleich nach dem [sudo] Passwort fragen.'
 echo 'I: Dies ist das Passwort für Ihren Benutzeraccount auf diesem Rechner.'
-echo
-echo 'I: Installiere vpn client, emacs, LaTeX, gnuplot …'
 
 if [[ "$install_other" == "true" ]]
 then
@@ -236,6 +234,9 @@ if [[ "$install_root" == "true" ]]
 then
 	packages_fedora=( root ${packages_fedora[@]} )
 fi
+
+echo
+echo "I: Installiere ${packages_debian[@]} …"
 
 # Install the packages with whatever package manager can be found.
 if which apt-get > /dev/null 2>&1
