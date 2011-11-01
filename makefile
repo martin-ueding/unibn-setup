@@ -4,6 +4,7 @@ unibn_setup: unibn_setup.php 99bonnet vpnc-restarter CHANGELOG
 	php $< > $@.build
 	mv $@.build $@
 	chmod +x $@
+	chmod -w $@
 
 CHANGELOG: .git/HEAD
 	git changelog | sed 's/.*/# &/' > $@.build
