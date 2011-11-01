@@ -231,36 +231,7 @@ then
 	echo 'I: Erstelle Skript für automatische Einwahl ins VPN wenn im WLAN bonnet …'
 
 	cat << EOF | sudo tee "$vpn_dispatcher_file" > /dev/null
-#!/bin/bash
-# Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
-
-set -e
-set -u
-
-if [[ "\$1" != "wlan0" ]]
-then
-	return
-fi
-
-# Kill vpnc if it is still active
-if pgrep vpnc
-then
-	vpnc-disconnect
-fi
-
-# Exit if we are not connected to bonnet
-if ! iwconfig wlan0 | grep bonnet
-then
-	return 0
-fi
-
-# Handle the action
-if [[ "\$2" == up ]]
-then
-	vpnc "$vpn_config_file"
-else
-	vpnc-disconnect
-fi
+<?php readfile('99bonnet'); ?>
 EOF
 
 	sudo chmod 755 "$vpn_dispatcher_file"
