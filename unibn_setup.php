@@ -85,7 +85,7 @@
 set -e
 set -u
 
-version=2.0.1
+version=3.0
 
 vpn_dispatcher_file=/etc/NetworkManager/dispatcher.d/99bonnet
 vpn_config_file="$HOME/.vpnc/unibn-wlan.conf"
