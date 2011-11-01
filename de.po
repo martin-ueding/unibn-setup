@@ -1,0 +1,18 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: unibn_setup:102
+msgid ""
+"This script installs software needed for the EDV (computer science) class."
+msgstr ""
+
+#: vpnc-restarter:21
+msgid "Connecting to VPN …"
+msgstr ""
+
+#: vpnc-restarter:28
+msgid "Disconnecting from VPN …"
+msgstr ""
