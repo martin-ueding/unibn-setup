@@ -4,7 +4,7 @@
 set -e
 set -u
 
-if [[ "\$1" != "wlan0" ]]
+if [[ "$1" != "wlan0" ]]
 then
 	return
 fi
@@ -22,9 +22,9 @@ then
 fi
 
 # Handle the action
-if [[ "\$2" == up ]]
+if [[ "$2" == up ]]
 then
-	vpnc "$vpn_config_file"
+	vpnc "$HOME/.vpnc/unibn-wlan.conf"
 else
 	vpnc-disconnect
 fi

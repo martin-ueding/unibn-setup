@@ -233,7 +233,11 @@ then
 	echo 'I: Erstelle Skript für automatische Einwahl ins VPN wenn im WLAN bonnet …'
 
 	cat << EOF | sudo tee "$vpn_dispatcher_file" > /dev/null
-<?php readfile('99bonnet'); ?>
+<?php
+$s = file_get_contents('99bonnet');
+$s = str_replace('$', '\$', $s);
+echo $s
+?>
 EOF
 
 	sudo chmod 755 "$vpn_dispatcher_file"
