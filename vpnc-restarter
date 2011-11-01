@@ -9,7 +9,22 @@ fi
 
 # Cleanup for exit, disconnect from the VPN.
 destructor() {
+	notify_disconnect
 	vpnc-disconnect
+}
+
+notify_connect() {
+	if which notify-send > /dev/null
+	then
+		notify-send -u low -t 1000 $"Connecting to VPN …"
+	fi
+}
+
+notify_disconnect() {
+	if which notify-send > /dev/null
+	then
+		notify-send -u low -t 1000 $"Disconnecting from VPN …"
+	fi
 }
 
 trap destructor EXIT
@@ -17,6 +32,7 @@ trap destructor EXIT
 # Start the VPN client in the foreground and restart it whenever it dies.
 while :
 do
+	notify_connect
 	vpnc --no-detach "$HOME/.vpnc/unibn-wlan.conf"
 done
 
