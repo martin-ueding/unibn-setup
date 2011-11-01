@@ -89,6 +89,8 @@ vpn_dispatcher_file=/etc/NetworkManager/dispatcher.d/99bonnet
 vpn_config_file="$HOME/.vpnc/unibn-wlan.conf"
 vpn_restarter_file="/sbin/vpnc-restarter"
 
+TEXTDOMAIN=unibn_setup
+
 
 ###############################################################################
 #                         Handle --version and --help.                        #
