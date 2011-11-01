@@ -85,7 +85,7 @@
 set -e
 set -u
 
-version=3.0.1
+version=3.1
 
 vpn_dispatcher_file=/etc/NetworkManager/dispatcher.d/99bonnet
 vpn_config_file="$HOME/.vpnc/unibn-wlan.conf"
@@ -128,12 +128,8 @@ EOF
 #                   Print welcome message and instructions.                   #
 ###############################################################################
 
-echo '+-----------------------------------------------------------------------------+'
-echo '|              Installation von Software für die EDV Vorlesung                |'
-echo '|                       (emacs, LaTeX, ROOT, gnuplot)                         |'
-echo '|                                                                             |'
-echo '|               Einrichtung des VPN für das Netzwerk "bonnet"                 |'
-echo '+-----------------------------------------------------------------------------+'
+echo $"Installation of software needed for computer class."
+echo $"Configuration of wireless connection \"bonnet\"."
 echo
 echo $"To abort at any time, press Ctrl-C."
 echo
