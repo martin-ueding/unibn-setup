@@ -117,6 +117,7 @@ cat << EOF | base64 -d | sudo tee "/usr/share/locale/de/LC_MESSAGES/unibn_setup.
 <?php readfile('de.mo.asc'); ?>
 EOF
 
+
 ###############################################################################
 #                   Print welcome message and instructions.                   #
 ###############################################################################
