@@ -237,16 +237,19 @@ then
 	packages_fedora=( root ${packages_fedora[@]:-} )
 fi
 
-echo
-echo "Installing ${packages_debian[@]} …"
+if (( ${#packages_debian[@]} > 0 ))
+then
+	echo
+	echo "Installing ${packages_debian[@]} …"
 
-# Install the packages with whatever package manager can be found.
-if which apt-get > /dev/null 2>&1
-then
-	sudo apt-get -y install ${packages_debian[@]}
-elif which yum > /dev/null 2>&1
-then
-	sudo yum -y install ${packages_fedora[@]}
+	# Install the packages with whatever package manager can be found.
+	if which apt-get > /dev/null 2>&1
+	then
+		sudo apt-get -y install ${packages_debian[@]}
+	elif which yum > /dev/null 2>&1
+	then
+		sudo yum -y install ${packages_fedora[@]}
+	fi
 fi
 
 echo
