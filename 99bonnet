@@ -25,6 +25,4 @@ fi
 if [[ "$2" == up ]]
 then
 	vpnc "$HOME/.vpnc/unibn-wlan.conf"
-else
-	vpnc-disconnect
 fi
