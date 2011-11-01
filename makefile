@@ -30,3 +30,5 @@ de.po: unibn_setup.pot
 clean:
 	$(RM) unibn_setup
 	$(RM) *.build
+	$(RM) de.mo de.mo.asc
+	$(RM) unibn_setup.pot
