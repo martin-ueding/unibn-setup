@@ -128,43 +128,43 @@ echo '|                                                                         
 echo '|               Einrichtung des VPN für das Netzwerk "bonnet"                 |'
 echo '+-----------------------------------------------------------------------------+'
 echo
-echo $"I: To abort at any time, press Ctrl-C."
+echo $"To abort at any time, press Ctrl-C."
 echo
-echo $"I: To revert anything this script did, use these commands:"
+echo $"To revert anything this script did, use these commands:"
 echo
-echo $"I: Removal of the software installed by package management:"
+echo $"Removal of the software installed by package management:"
 
 if which apt-get > /dev/null 2>&1
 then
-	echo 'I:     sudo apt-get -y remove emacs texlive-latex-base gnuplot'
-	echo 'I:     sudo apt-get -y autoremove'
+	echo '    sudo apt-get -y remove emacs texlive-latex-base gnuplot'
+	echo '    sudo apt-get -y autoremove'
 elif which yum > /dev/null 2>&1
 then
-	echo 'I:     sudo yum -y erase emacs texlive-latex gnuplot'
+	echo '    sudo yum -y erase emacs texlive-latex gnuplot'
 fi
 
 echo
-echo $"I: Removal of VPN access:"
-echo "I:     sudo rm -f $vpn_config_file"
-echo "I:     sudo rm -f $vpn_dispatcher_file"
+echo $"Removal of VPN access:"
+echo "    sudo rm -f $vpn_config_file"
+echo "    sudo rm -f $vpn_dispatcher_file"
 
 if which apt-get > /dev/null 2>&1
 then
-	echo 'I:     sudo apt-get -y remove vpnc'
+	echo '    sudo apt-get -y remove vpnc'
 elif which yum > /dev/null 2>&1
 then
-	echo 'I:     sudo yum -y erase vpnc'
+	echo '    sudo yum -y erase vpnc'
 fi
 
 echo
-echo $"I: Removal of ROOT:"
+echo $"Removal of ROOT:"
 
 if which apt-get > /dev/null 2>&1
 then
-	echo 'I:     sudo rm -rf /opt/root'
+	echo '    sudo rm -rf /opt/root'
 elif which yum > /dev/null 2>&1
 then
-	echo 'I:     sudo yum -y erase root'
+	echo '    sudo yum -y erase root'
 fi
 
 echo
@@ -235,7 +235,7 @@ then
 fi
 
 echo
-echo "I: Installing ${packages_debian[@]} …"
+echo "Installing ${packages_debian[@]} …"
 
 # Install the packages with whatever package manager can be found.
 if which apt-get > /dev/null 2>&1
@@ -285,8 +285,8 @@ EOF
 
 	if [[ -f "$vpn_config_file" ]]
 	then
-		echo $"I: There is a VPN config file."
-		echo -n $"I: The user is: "
+		echo $"There is a VPN config file."
+		echo -n $"The user is: "
 		grep username "$vpn_config_file" | awk '{print $3}'
 
 		read -r -p $"-> Recreate file? [y/N] " answer
@@ -294,8 +294,8 @@ EOF
 
 	if [[ "$answer" = [yY] ]]
 	then
-		echo $"I: Please enter your Uni Bonn credentials:"
-		echo $"I: Your password will not be shown during typing."
+		echo $"Please enter your Uni Bonn credentials:"
+		echo $"Your password will not be shown during typing."
 
 		user=
 		password=
@@ -339,7 +339,7 @@ if [[ "$install_root" == "true" ]] && ! which yum > /dev/null 2>&1
 then
 	if [[ -d /opt/root ]]
 	then
-		echo $"I: It seems that ROOT is installed."
+		echo $"It seems that ROOT is installed."
 		read -r -p $"-> Reinstall ROOT? [y/N] " answer
 
 		if [[ "$answer" = [nN] || -z "$answer" ]]
