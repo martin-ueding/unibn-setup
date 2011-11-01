@@ -1,9 +1,6 @@
 #!/bin/bash
 # Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
-set -e
-set -u
-
 if (( UID != 0 ))
 then
 	echo "This script must be run as root since vpnc must be run as root."
