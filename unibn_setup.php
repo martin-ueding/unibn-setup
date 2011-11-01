@@ -128,13 +128,13 @@ echo '|                                                                         
 echo '|               Einrichtung des VPN für das Netzwerk "bonnet"                 |'
 echo '+-----------------------------------------------------------------------------+'
 echo
-echo $'I: Falls Sie die Installation aus irgendeinem Grund abbrechen möchten, drücken'
-echo $'I: Sie Strg-C.'
+echo $"I: Falls Sie die Installation aus irgendeinem Grund abbrechen möchten, drücken"
+echo $"I: Sie Strg-C."
 echo
-echo $'I: Um die Aktionen dieses Skripts rückgängig zu machen, führen Sie folgende'
-echo $'I: Befehle aus:'
+echo $"I: Um die Aktionen dieses Skripts rückgängig zu machen, führen Sie folgende"
+echo $"I: Befehle aus:"
 echo
-echo $'I: Entfernen der per Paketmanagement installierten Software:'
+echo $"I: Entfernen der per Paketmanagement installierten Software:"
 
 if which apt-get > /dev/null 2>&1
 then
@@ -146,7 +146,7 @@ then
 fi
 
 echo
-echo $'I: Entfernen des VPN Zugangs:'
+echo $"I: Entfernen des VPN Zugangs:"
 echo "I:     sudo rm -f $vpn_config_file"
 echo "I:     sudo rm -f $vpn_dispatcher_file"
 
@@ -159,7 +159,7 @@ then
 fi
 
 echo
-echo $'I: Entfernen von ROOT:'
+echo $"I: Entfernen von ROOT:"
 
 if which apt-get > /dev/null 2>&1
 then
@@ -177,40 +177,40 @@ echo
 ###############################################################################
 
 
-read -r -p $'-> VPN Zugang einrichten? [Y/n] ' answer
+read -r -p $"-> VPN Zugang einrichten? [Y/n] " answer
 
 if [[ "$answer" = [yYjJ] || -z "$answer" ]]
 then
 	install_vpn=true
-	echo $'I: VPN wird eingerichtet.'
+	echo $"I: VPN wird eingerichtet."
 else
 	install_vpn=false
-	echo $'I: VPN *nicht* wird eingerichtet.'
+	echo $"I: VPN *nicht* wird eingerichtet."
 fi
 
 echo
 
 
-read -r -p $'-> ROOT Statistik installieren? [Y/n] ' answer
+read -r -p $"-> ROOT Statistik installieren? [Y/n] " answer
 
 if [[ "$answer" = [yYjJ] || -z "$answer" ]]
 then
 	install_root=true
-	echo $'I: ROOT wird installiert.'
+	echo $"I: ROOT wird installiert."
 else
 	install_root=false
-	echo $'I: ROOT *nicht* wird installiert.'
+	echo $"I: ROOT *nicht* wird installiert."
 fi
 
-read -r -p $'-> Sonstige Software installieren? [Y/n] ' answer
+read -r -p $"-> Sonstige Software installieren? [Y/n] " answer
 
 if [[ "$answer" = [yYjJ] || -z "$answer" ]]
 then
 	install_other=true
-	echo $'I: Sonstige Software wird installiert.'
+	echo $"I: Sonstige Software wird installiert."
 else
 	install_other=false
-	echo $'I: Sonstige Software *nicht* wird installiert.'
+	echo $"I: Sonstige Software *nicht* wird installiert."
 fi
 
 echo
@@ -220,8 +220,8 @@ echo
 #                        Install packages via apt-get.                        #
 ###############################################################################
 
-echo $'I: Dieses Skript wird gleich nach dem [sudo] Passwort fragen.'
-echo $'I: Dies ist das Passwort für Ihren Benutzeraccount auf diesem Rechner.'
+echo $"I: Dieses Skript wird gleich nach dem [sudo] Passwort fragen."
+echo $"I: Dies ist das Passwort für Ihren Benutzeraccount auf diesem Rechner."
 
 packages_debian=( )
 packages_fedora=( )
@@ -266,7 +266,7 @@ echo
 
 if [[ "$install_vpn" == "true" ]]
 then
-	echo 'I: Erstelle Skript für automatische Einwahl ins VPN wenn im WLAN bonnet …'
+	echo $"I: Erstelle Skript für automatische Einwahl ins VPN wenn im WLAN bonnet …"
 
 	cat << EOF | sudo tee "$vpn_dispatcher_file" > /dev/null
 <?php
@@ -298,21 +298,21 @@ EOF
 
 	if [[ -f "$vpn_config_file" ]]
 	then
-		echo 'I: Es existiert bereits eine vpnc Konfigurationsdatei.'
-		echo -n 'I: Benutzer ist '
+		echo $"I: Es existiert bereits eine vpnc Konfigurationsdatei."
+		echo -n $"I: Benutzer ist "
 		grep username "$vpn_config_file" | awk '{print $3}'
 
-		read -r -p '-> Datei neu anlegen? [y/N] ' answer
+		read -r -p $"-> Datei neu anlegen? [y/N] " answer
 	fi
 
 	if [[ "$answer" = [nN] || -z "$answer" ]]
 	then
-		echo 'I: Konfigurationsdatei wird *nicht* neu angelegt.'
+		echo $"I: Konfigurationsdatei wird *nicht* neu angelegt."
 	else
-		echo 'I: Konfigurationsdatei wird neu angelegt.'
+		echo $"I: Konfigurationsdatei wird neu angelegt."
 
-		echo 'I: Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:'
-		echo 'I: Ihr Passwort wird beim Tippen nicht angezeigt.'
+		echo $"I: Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:"
+		echo $"I: Ihr Passwort wird beim Tippen nicht angezeigt."
 
 		user=
 		password=
@@ -320,27 +320,27 @@ EOF
 		# Poll the user for a user name until he enters one.
 		while [[ -z "$user" ]]
 		do
-			read -r -p '-> Uni Bonn (HRZ) Benutzername: ' user
+			read -r -p $"-> Uni Bonn (HRZ) Benutzername: " user
 
 			if [[ -z "$user" ]]
 			then
-				echo 'E: Es wurde kein Benutzername eingegeben.'
+				echo $"E: Es wurde kein Benutzername eingegeben."
 			fi
 		done
 
 		# Poll the user for a password until he enters one.
 		while [[ -z "$password" ]]
 		do
-			read -r -s -p '-> Uni Bonn (HRZ) Passwort: ' password
+			read -r -s -p $"-> Uni Bonn (HRZ) Passwort: " password
 			echo
 
 			if [[ -z "$password" ]]
 			then
-				echo 'E: Es wurde kein Passwort eingegeben.'
+				echo $"E: Es wurde kein Passwort eingegeben."
 			fi
 		done
 
-		echo 'I: Erstelle Konfigurationsdatei für vpnc, den VPN client …'
+		echo $"I: Erstelle Konfigurationsdatei für vpnc, den VPN client …"
 
 		mkdir -p "$(dirname "$vpn_config_file")"
 
@@ -369,19 +369,19 @@ if [[ "$install_root" == "true" ]] && ! which yum > /dev/null 2>&1
 then
 	if [[ -d /opt/root ]]
 	then
-		echo 'I: Es scheint, als seie ROOT schon installiert.'
-		read -r -p '-> ROOT neu installieren? [y/N] ' answer
+		echo $"I: Es scheint, als seie ROOT schon installiert."
+		read -r -p $"-> ROOT neu installieren? [y/N] " answer
 
 		if [[ "$answer" = [nN] || -z "$answer" ]]
 		then
-			echo 'I: ROOT wird *nicht* neu installiert.'
+			echo $"I: ROOT wird *nicht* neu installiert."
 			install_root=false
 		fi
 	fi
 
 	if [[ "$install_root" == "true" ]]
 	then
-		echo 'I: Installiere ROOT …'
+		echo $"I: Installiere ROOT …"
 
 		root_file=root_v5.30.02.Linux-slc5-gcc4.3.tar.gz
 
@@ -389,28 +389,28 @@ then
 		# needed to detect an aborted download.
 		if [[ -f "$root_file" && $(md5sum "$root_file" | awk '{print $1}') == 53b311f490e7673e19c493ccb7216748 ]]
 		then
-			echo 'I: ROOT wurde bereits heruntergeladen.'
+			echo $"I: ROOT wurde bereits heruntergeladen."
 		else
-			echo 'I: Lade ROOT herunter …'
+			echo $"I: Lade ROOT herunter …"
 			# Delete the old download so that wget does not try to preserve the broken
 			# download.
 			rm -f "$root_file"
 			wget ftp://root.cern.ch/root/$root_file
 		fi
 
-		echo 'I: Entpacke ROOT …'
+		echo $"I: Entpacke ROOT …"
 		tar -xzf "$root_file"
 
-		echo 'I: Lösche ROOT Download …'
+		echo $"I: Lösche ROOT Download …"
 		rm -f "$root_file"
 
-		echo 'I: Lösche alte ROOT installation …'
+		echo $"I: Lösche alte ROOT installation …"
 		sudo rm -rf /opt/root
 
-		echo 'I: Verschiebe ROOT nach /opt …'
+		echo $"I: Verschiebe ROOT nach /opt …"
 		sudo mv root /opt/
 
-		echo 'I: Passe Rechte der ROOT Installation an …'
+		echo $"I: Passe Rechte der ROOT Installation an …"
 		sudo chown -R root:root /opt/root
 
 	fi
@@ -422,13 +422,13 @@ then
 	profile_file="/etc/bash.bashrc"
 	if fgrep '/opt/root/bin/thisroot.sh' "$profile_file" > /dev/null 2>&1
 	then
-		echo 'I: ROOT ist bereits im Environment.'
+		echo $"I: ROOT ist bereits im Environment."
 	else
-		echo 'I: Füge ROOT zum Environment hinzu …'
+		echo $"I: Füge ROOT zum Environment hinzu …"
 		if [[ -f "$profile_file" ]]
 		then
 			sudo cp "$profile_file" "$profile_file.bak"
-			echo "I: Sicherungskopie von $profile_file in $profile_file.bak angelegt."
+			echo $"I: Sicherungskopie von $profile_file in $profile_file.bak angelegt."
 		fi
 		cat << EOF | sudo tee "$profile_file"  > /dev/null
 
@@ -439,8 +439,8 @@ then
 fi
 EOF
 
-		echo 'I: ROOT wird erst funktionieren, wenn Sie ein neues Terminal öffnen.'
-		echo "I: Sie können auch mit . $profile_file die Konfiguration neu laden."
+		echo $"I: ROOT wird erst funktionieren, wenn Sie ein neues Terminal öffnen."
+		echo $"I: Sie können auch mit . $profile_file die Konfiguration neu laden."
 	fi
 
 	echo
@@ -451,4 +451,4 @@ fi
 #                                   Finish.                                   #
 ###############################################################################
 
-echo 'I: Die Installation und Konfiguration ist abgeschlossen.'
+echo $"I: Die Installation und Konfiguration ist abgeschlossen."
