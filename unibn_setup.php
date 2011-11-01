@@ -101,7 +101,7 @@ case "${1:-}" in
 		;;
 
 	--help)
-		echo "This script installs software needed for the EDV (computer science) class."
+		echo $"This script installs software needed for the EDV (computer science) class."
 		exit 0
 		;;
 esac
@@ -118,13 +118,13 @@ echo '|                                                                         
 echo '|               Einrichtung des VPN für das Netzwerk "bonnet"                 |'
 echo '+-----------------------------------------------------------------------------+'
 echo
-echo 'I: Falls Sie die Installation aus irgendeinem Grund abbrechen möchten, drücken'
-echo 'I: Sie Strg-C.'
+echo $'I: Falls Sie die Installation aus irgendeinem Grund abbrechen möchten, drücken'
+echo $'I: Sie Strg-C.'
 echo
-echo 'I: Um die Aktionen dieses Skripts rückgängig zu machen, führen Sie folgende'
-echo 'I: Befehle aus:'
+echo $'I: Um die Aktionen dieses Skripts rückgängig zu machen, führen Sie folgende'
+echo $'I: Befehle aus:'
 echo
-echo 'I: Entfernen der per Paketmanagement installierten Software:'
+echo $'I: Entfernen der per Paketmanagement installierten Software:'
 
 if which apt-get > /dev/null 2>&1
 then
@@ -136,7 +136,7 @@ then
 fi
 
 echo
-echo 'I: Entfernen des VPN Zugangs:'
+echo $'I: Entfernen des VPN Zugangs:'
 echo "I:     sudo rm -f $vpn_config_file"
 echo "I:     sudo rm -f $vpn_dispatcher_file"
 
@@ -149,7 +149,7 @@ then
 fi
 
 echo
-echo 'I: Entfernen von ROOT:'
+echo $'I: Entfernen von ROOT:'
 
 if which apt-get > /dev/null 2>&1
 then
@@ -167,40 +167,40 @@ echo
 ###############################################################################
 
 
-read -r -p '-> VPN Zugang einrichten? [Y/n] ' answer
+read -r -p $'-> VPN Zugang einrichten? [Y/n] ' answer
 
 if [[ "$answer" = [yYjJ] || -z "$answer" ]]
 then
 	install_vpn=true
-	echo 'I: VPN wird eingerichtet.'
+	echo $'I: VPN wird eingerichtet.'
 else
 	install_vpn=false
-	echo 'I: VPN *nicht* wird eingerichtet.'
+	echo $'I: VPN *nicht* wird eingerichtet.'
 fi
 
 echo
 
 
-read -r -p '-> ROOT Statistik installieren? [Y/n] ' answer
+read -r -p $'-> ROOT Statistik installieren? [Y/n] ' answer
 
 if [[ "$answer" = [yYjJ] || -z "$answer" ]]
 then
 	install_root=true
-	echo 'I: ROOT wird installiert.'
+	echo $'I: ROOT wird installiert.'
 else
 	install_root=false
-	echo 'I: ROOT *nicht* wird installiert.'
+	echo $'I: ROOT *nicht* wird installiert.'
 fi
 
-read -r -p '-> Sonstige Software installieren? [Y/n] ' answer
+read -r -p $'-> Sonstige Software installieren? [Y/n] ' answer
 
 if [[ "$answer" = [yYjJ] || -z "$answer" ]]
 then
 	install_other=true
-	echo 'I: Sonstige Software wird installiert.'
+	echo $'I: Sonstige Software wird installiert.'
 else
 	install_other=false
-	echo 'I: Sonstige Software *nicht* wird installiert.'
+	echo $'I: Sonstige Software *nicht* wird installiert.'
 fi
 
 echo
@@ -210,8 +210,8 @@ echo
 #                        Install packages via apt-get.                        #
 ###############################################################################
 
-echo 'I: Dieses Skript wird gleich nach dem [sudo] Passwort fragen.'
-echo 'I: Dies ist das Passwort für Ihren Benutzeraccount auf diesem Rechner.'
+echo $'I: Dieses Skript wird gleich nach dem [sudo] Passwort fragen.'
+echo $'I: Dies ist das Passwort für Ihren Benutzeraccount auf diesem Rechner.'
 
 packages_debian=( )
 packages_fedora=( )
