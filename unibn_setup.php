@@ -192,6 +192,17 @@ else
 	echo 'I: ROOT *nicht* wird installiert.'
 fi
 
+read -r -p '-> Sonstige Software installieren? [Y/n] ' answer
+
+if [[ "$answer" = [yYjJ] || -z "$answer" ]]
+then
+	install_other=true
+	echo 'I: Sonstige Software wird installiert.'
+else
+	install_other=false
+	echo 'I: Sonstige Software *nicht* wird installiert.'
+fi
+
 echo
 
 
@@ -204,8 +215,14 @@ echo 'I: Dies ist das Passwort für Ihren Benutzeraccount auf diesem Rechner.'
 echo
 echo 'I: Installiere vpn client, emacs, LaTeX, gnuplot …'
 
-packages_debian=( emacs texlive-latex-base gnuplot )
-packages_fedora=( emacs texlive-latex gnuplot )
+if [[ "$install_other" == "true" ]]
+then
+	packages_debian=( emacs texlive-latex-base gnuplot )
+	packages_fedora=( emacs texlive-latex gnuplot )
+else
+	packages_debian=()
+	packages_fedora=()
+fi
 
 if [[ "$install_vpn" == "true" ]]
 then
