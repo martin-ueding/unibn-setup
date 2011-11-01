@@ -236,7 +236,7 @@ fi
 if (( ${#packages_debian[@]} > 0 ))
 then
 	echo
-	echo "Installing ${packages_debian[@]} ..."
+	echo $"Installing ${packages_debian[@]} ..."
 
 	# Install the packages with whatever package manager can be found.
 	if which apt-get > /dev/null 2>&1

@@ -4,77 +4,83 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: unibn_setup:134
+#: unibn_setup:146
 msgid ""
 "This script installs software needed for the EDV (computer science) class."
 msgstr ""
 "Dieses Skript installiert Software, die für die EDV Vorlesung benötigt wird."
 
-#: unibn_setup:176
+#: unibn_setup:206
 msgid "To abort at any time, press Ctrl-C."
 msgstr "Drücken Sie Strg-C um jederzeit abzubrechen."
 
-#: unibn_setup:178
+#: unibn_setup:208
 msgid "To revert anything this script did, use these commands:"
-msgstr "Um die Änderungen dieses Skripts rückgängig zu machen, benutzen Sie folgende Befehle:"
+msgstr ""
+"Um die Änderungen dieses Skripts rückgängig zu machen, benutzen Sie folgende "
+"Befehle:"
 
-#: unibn_setup:180
+#: unibn_setup:210
 msgid "Removal of the software installed by package management:"
 msgstr "Entfernen der per Paketmanagement installierten Software:"
 
-#: unibn_setup:192
+#: unibn_setup:222
 msgid "Removal of VPN access:"
 msgstr "Entfernen des VPN Zugangs:"
 
-#: unibn_setup:205
+#: unibn_setup:235
 msgid "Removal of ROOT:"
 msgstr "Entfernen von ROOT:"
 
-#: unibn_setup:223
+#: unibn_setup:253
 msgid "-> Set up VPN? [Y/n] "
 msgstr "-> VPN Zugang einrichten? [Y/n] "
 
-#: unibn_setup:235
+#: unibn_setup:263
 msgid "-> Install ROOT statistics? [Y/n] "
 msgstr "-> ROOT Statistik installieren? [Y/n] "
 
-#: unibn_setup:244
+#: unibn_setup:272
 msgid "-> Install other software? [Y/n] "
 msgstr "-> Andere Software installieren? [Y/n] "
 
-#: unibn_setup:391
+#: unibn_setup:311
+msgid "Installing ${packages_debian[@]} ..."
+msgstr "Installiere ${packages_debian[@]} ..."
+
+#: unibn_setup:374
 msgid "There is a VPN config file."
 msgstr "Es gibt eine VPN Konfigurationsdatei."
 
-#: unibn_setup:392
+#: unibn_setup:375
 msgid "The user is: "
 msgstr "Der Benutzer ist: "
 
-#: unibn_setup:395
+#: unibn_setup:378
 msgid "-> Recreate file? [y/N] "
 msgstr "-> Datei neu erstellen? [y/N] "
 
-#: unibn_setup:400
+#: unibn_setup:384
 msgid "Please enter your Uni Bonn credentials:"
 msgstr "Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:"
 
-#: unibn_setup:401
+#: unibn_setup:385
 msgid "Your password will not be shown during typing."
 msgstr "Ihr Passwort wird beim Tippen nicht angezeigt."
 
-#: unibn_setup:409
+#: unibn_setup:393
 msgid "-> Uni Bonn username: "
 msgstr "-> Uni Bonn Benutzername: "
 
-#: unibn_setup:415
+#: unibn_setup:399
 msgid "-> Uni Bonn password: "
 msgstr "-> Uni Bonn Passwort: "
 
-#: unibn_setup:445
+#: unibn_setup:428
 msgid "It seems that ROOT is installed."
 msgstr "Es scheint, als seie ROOT schon installiert."
 
-#: unibn_setup:446
+#: unibn_setup:429
 msgid "-> Reinstall ROOT? [y/N] "
 msgstr "-> ROOT neu installieren? [y/N] "
 
