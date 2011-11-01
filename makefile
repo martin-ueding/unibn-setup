@@ -11,8 +11,8 @@ CHANGELOG: .git/HEAD
 
 l10n: unibn_setup.pot
 
-unibn_setup.pot: unibn_setup.php 99bonnet vpnc-restarter
-	bash --dump-po-strings unibn_setup.php > $@.build
+unibn_setup.pot: unibn_setup 99bonnet vpnc-restarter
+	bash --dump-po-strings unibn_setup > $@.build
 	bash --dump-po-strings 99bonnet >> $@.build
 	bash --dump-po-strings vpnc-restarter >> $@.build
 	mv $@.build $@
@@ -22,9 +22,6 @@ de.mo: de.po
 
 de.mo.asc: de.mo
 	base64 $^ > $@
-
-de.po: unibn_setup.pot
-	msgmerge --update $@ $^
 
 .PHONY: clean
 clean:
