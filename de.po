@@ -13,196 +13,189 @@ msgstr ""
 #: unibn_setup:166
 msgid ""
 "I: Falls Sie die Installation aus irgendeinem Grund abbrechen möchten, "
-"drücken"
+"drücken Sie Strg-C."
 msgstr ""
 
-#: unibn_setup:167
-msgid "I: Sie Strg-C."
-msgstr ""
-
-#: unibn_setup:169
+#: unibn_setup:168
 msgid ""
-"I: Um die Aktionen dieses Skripts rückgängig zu machen, führen Sie folgende"
+"I: Um die Aktionen dieses Skripts rückgängig zu machen, führen Sie folgende "
+"Befehle aus:"
 msgstr ""
 
 #: unibn_setup:170
-msgid "I: Befehle aus:"
-msgstr ""
+msgid "I: Removal of the software installed by package management."
+msgstr "I: Entfernen der per Paketmanagement installierten Software:"
 
-#: unibn_setup:172
-msgid "I: Entfernen der per Paketmanagement installierten Software:"
-msgstr ""
+#: unibn_setup:182
+msgid "I: Removal of VPN access:"
+msgstr "I: Entfernen des VPN Zugangs:"
 
-#: unibn_setup:184
-msgid "I: Entfernen des VPN Zugangs:"
-msgstr ""
+#: unibn_setup:195
+msgid "I: Removal of ROOT:"
+msgstr "I: Entfernen von ROOT:"
 
-#: unibn_setup:197
-msgid "I: Entfernen von ROOT:"
-msgstr ""
+#: unibn_setup:213
+msgid "-> Set up VPN? [Y/n]"
+msgstr "-> VPN Zugang einrichten? [Y/n] "
 
-#: unibn_setup:215
-msgid "-> VPN Zugang einrichten? [Y/n] "
-msgstr ""
+#: unibn_setup:218
+msgid "I: VPN will be set up."
+msgstr "I: VPN wird eingerichtet."
 
-#: unibn_setup:220
-msgid "I: VPN wird eingerichtet."
-msgstr ""
+#: unibn_setup:221
+msgid "I: VPN will *not* be set up."
+msgstr "I: VPN *nicht* wird eingerichtet."
 
-#: unibn_setup:223
-msgid "I: VPN *nicht* wird eingerichtet."
-msgstr ""
-
-#: unibn_setup:229
+#: unibn_setup:227
 msgid "-> ROOT Statistik installieren? [Y/n] "
 msgstr ""
 
-#: unibn_setup:234
+#: unibn_setup:232
 msgid "I: ROOT wird installiert."
 msgstr ""
 
-#: unibn_setup:237
+#: unibn_setup:235
 msgid "I: ROOT *nicht* wird installiert."
 msgstr ""
 
-#: unibn_setup:240
+#: unibn_setup:238
 msgid "-> Sonstige Software installieren? [Y/n] "
 msgstr ""
 
-#: unibn_setup:245
+#: unibn_setup:243
 msgid "I: Sonstige Software wird installiert."
 msgstr ""
 
-#: unibn_setup:248
+#: unibn_setup:246
 msgid "I: Sonstige Software *nicht* wird installiert."
 msgstr ""
 
-#: unibn_setup:258
+#: unibn_setup:256
 msgid "I: Dieses Skript wird gleich nach dem [sudo] Passwort fragen."
 msgstr ""
 
-#: unibn_setup:259
+#: unibn_setup:257
 msgid "I: Dies ist das Passwort für Ihren Benutzeraccount auf diesem Rechner."
 msgstr ""
 
-#: unibn_setup:304
+#: unibn_setup:302
 msgid ""
 "I: Erstelle Skript für automatische Einwahl ins VPN wenn im WLAN bonnet …"
 msgstr ""
 
-#: unibn_setup:394
+#: unibn_setup:392
 msgid "I: Es existiert bereits eine vpnc Konfigurationsdatei."
 msgstr ""
 
-#: unibn_setup:395
+#: unibn_setup:393
 msgid "I: Benutzer ist "
 msgstr ""
 
-#: unibn_setup:398
+#: unibn_setup:396
 msgid "-> Datei neu anlegen? [y/N] "
 msgstr ""
 
-#: unibn_setup:403
+#: unibn_setup:401
 msgid "I: Konfigurationsdatei wird *nicht* neu angelegt."
 msgstr ""
 
-#: unibn_setup:405
+#: unibn_setup:403
 msgid "I: Konfigurationsdatei wird neu angelegt."
 msgstr ""
 
-#: unibn_setup:407
+#: unibn_setup:405
 msgid "I: Bitte geben Sie Ihre Uni Bonn Zugangsdaten ein:"
 msgstr ""
 
-#: unibn_setup:408
+#: unibn_setup:406
 msgid "I: Ihr Passwort wird beim Tippen nicht angezeigt."
 msgstr ""
 
-#: unibn_setup:416
+#: unibn_setup:414
 msgid "-> Uni Bonn (HRZ) Benutzername: "
 msgstr ""
 
-#: unibn_setup:420
+#: unibn_setup:418
 msgid "E: Es wurde kein Benutzername eingegeben."
 msgstr ""
 
-#: unibn_setup:427
+#: unibn_setup:425
 msgid "-> Uni Bonn (HRZ) Passwort: "
 msgstr ""
 
-#: unibn_setup:432
+#: unibn_setup:430
 msgid "E: Es wurde kein Passwort eingegeben."
 msgstr ""
 
-#: unibn_setup:436
+#: unibn_setup:434
 msgid "I: Erstelle Konfigurationsdatei für vpnc, den VPN client …"
 msgstr ""
 
-#: unibn_setup:465
+#: unibn_setup:463
 msgid "I: Es scheint, als seie ROOT schon installiert."
 msgstr ""
 
-#: unibn_setup:466
+#: unibn_setup:464
 msgid "-> ROOT neu installieren? [y/N] "
 msgstr ""
 
-#: unibn_setup:470
+#: unibn_setup:468
 msgid "I: ROOT wird *nicht* neu installiert."
 msgstr ""
 
-#: unibn_setup:477
+#: unibn_setup:475
 msgid "I: Installiere ROOT …"
 msgstr ""
 
-#: unibn_setup:485
+#: unibn_setup:483
 msgid "I: ROOT wurde bereits heruntergeladen."
 msgstr ""
 
-#: unibn_setup:487
+#: unibn_setup:485
 msgid "I: Lade ROOT herunter …"
 msgstr ""
 
-#: unibn_setup:494
+#: unibn_setup:492
 msgid "I: Entpacke ROOT …"
 msgstr ""
 
-#: unibn_setup:497
+#: unibn_setup:495
 msgid "I: Lösche ROOT Download …"
 msgstr ""
 
-#: unibn_setup:500
+#: unibn_setup:498
 msgid "I: Lösche alte ROOT installation …"
 msgstr ""
 
-#: unibn_setup:503
+#: unibn_setup:501
 msgid "I: Verschiebe ROOT nach /opt …"
 msgstr ""
 
-#: unibn_setup:506
+#: unibn_setup:504
 msgid "I: Passe Rechte der ROOT Installation an …"
 msgstr ""
 
-#: unibn_setup:518
+#: unibn_setup:516
 msgid "I: ROOT ist bereits im Environment."
 msgstr ""
 
-#: unibn_setup:520
+#: unibn_setup:518
 msgid "I: Füge ROOT zum Environment hinzu …"
 msgstr ""
 
-#: unibn_setup:524
+#: unibn_setup:522
 msgid "I: Sicherungskopie von $profile_file in $profile_file.bak angelegt."
 msgstr ""
 
-#: unibn_setup:535
+#: unibn_setup:533
 msgid "I: ROOT wird erst funktionieren, wenn Sie ein neues Terminal öffnen."
 msgstr ""
 
-#: unibn_setup:536
+#: unibn_setup:534
 msgid "I: Sie können auch mit . $profile_file die Konfiguration neu laden."
 msgstr ""
 
-#: unibn_setup:547
+#: unibn_setup:545
 msgid "I: Die Installation und Konfiguration ist abgeschlossen."
 msgstr ""
 
