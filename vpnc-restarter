@@ -13,6 +13,8 @@ destructor() {
 	vpnc-disconnect
 }
 
+trap destructor EXIT
+
 notify_connect() {
 	if which notify-send > /dev/null
 	then
@@ -26,8 +28,6 @@ notify_disconnect() {
 		notify-send -u low -t 1000 $"Disconnecting from VPN …"
 	fi
 }
-
-trap destructor EXIT
 
 # Start the VPN client in the foreground and restart it whenever it dies.
 while :
