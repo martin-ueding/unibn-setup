@@ -13,10 +13,10 @@ CHANGELOG: .git/HEAD
 l10n: unibn_setup.pot
 
 unibn_setup.pot: unibn_setup 99bonnet vpnc-restarter
-	bash --dump-po-strings unibn_setup > $@.tmp
-	bash --dump-po-strings 99bonnet >> $@.tmp
-	bash --dump-po-strings vpnc-restarter >> $@.tmp
-	mv $@.tmp $@
+	bash --dump-po-strings unibn_setup > $@.build
+	bash --dump-po-strings 99bonnet >> $@.build
+	bash --dump-po-strings vpnc-restarter >> $@.build
+	mv $@.build $@
 
 
 .PHONY: clean
