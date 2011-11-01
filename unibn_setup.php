@@ -91,6 +91,8 @@ vpn_dispatcher_file=/etc/NetworkManager/dispatcher.d/99bonnet
 vpn_config_file="$HOME/.vpnc/unibn-wlan.conf"
 vpn_restarter_file="/sbin/vpnc-restarter"
 
+legacy_vpn_config_file=/etc/unibn-wlan.conf
+
 mo_file="/usr/share/locale/de/LC_MESSAGES/unibn_setup.mo"
 
 TEXTDOMAIN=unibn_setup
@@ -277,6 +279,15 @@ EOF
 
 	answer=yes
 
+	mkdir -p "$(dirname "$vpn_config_file")"
+
+	# Move a legacy /etc/unibn-wlan.conf into the user's home directory
+	if [[ -f "$legacy_vpn_config_file" ]]
+	then
+		cp "$legacy_vpn_config_file" "$vpn_config_file"
+		sudo rm "$legacy_vpn_config_file"
+	fi
+
 	if [[ -f "$vpn_config_file" ]]
 	then
 		echo
@@ -308,7 +319,6 @@ EOF
 			read -r -s -p $"-> Uni Bonn password: " password
 		done
 
-		mkdir -p "$(dirname "$vpn_config_file")"
 
 		cat > "$vpn_config_file" << EOF
 IPSec gateway 131.220.224.201
