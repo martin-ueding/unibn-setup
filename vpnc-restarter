@@ -20,14 +20,14 @@ trap destructor EXIT
 notify_connect() {
 	if which notify-send > /dev/null
 	then
-		notify-send -u low -t 1000 $"Connecting to VPN …"
+		notify-send -u low -t 1000 $"Connecting to VPN ..."
 	fi
 }
 
 notify_disconnect() {
 	if which notify-send > /dev/null
 	then
-		notify-send -u low -t 1000 $"Disconnecting from VPN …"
+		notify-send -u low -t 1000 $"Disconnecting from VPN ..."
 	fi
 }
 

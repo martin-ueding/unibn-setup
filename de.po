@@ -4,15 +4,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: unibn_setup:102
+#: unibn_setup:104
 msgid ""
 "This script installs software needed for the EDV (computer science) class."
-msgstr "Dieses Skript installiert Software, die für die EDV Vorlesung benötigt wird."
+msgstr ""
+"Dieses Skript installiert Software, die für die EDV Vorlesung benötigt wird."
 
-#: vpnc-restarter:21
-msgid "Connecting to VPN …"
-msgstr "Verbinde mit VPN …"
+#: vpnc-restarter:23
+msgid "Connecting to VPN ..."
+msgstr "Verbinde mit VPN ..."
 
-#: vpnc-restarter:28
-msgid "Disconnecting from VPN …"
-msgstr "Trenne VPN …"
+#: vpnc-restarter:30
+msgid "Disconnecting from VPN ..."
+msgstr "Trenne VPN ..."
