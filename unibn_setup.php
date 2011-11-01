@@ -85,7 +85,7 @@
 set -e
 set -u
 
-version=3.0
+version=3.0.1
 
 vpn_dispatcher_file=/etc/NetworkManager/dispatcher.d/99bonnet
 vpn_config_file="$HOME/.vpnc/unibn-wlan.conf"
@@ -187,8 +187,6 @@ else
 	install_vpn=false
 fi
 
-echo
-
 
 read -r -p $"-> Install ROOT statistics? [Y/n] " answer
 
@@ -207,8 +205,6 @@ then
 else
 	install_other=false
 fi
-
-echo
 
 
 ###############################################################################
@@ -252,8 +248,6 @@ then
 	fi
 fi
 
-echo
-
 
 ###############################################################################
 #                          Create VPN login script.                           #
@@ -283,6 +277,7 @@ EOF
 
 	if [[ -f "$vpn_config_file" ]]
 	then
+		echo
 		echo $"There is a VPN config file."
 		echo -n $"The user is: "
 		grep username "$vpn_config_file" | awk '{print $3}'
@@ -292,6 +287,7 @@ EOF
 
 	if [[ "$answer" = [yY] ]]
 	then
+		echo
 		echo $"Please enter your Uni Bonn credentials:"
 		echo $"Your password will not be shown during typing."
 
@@ -322,8 +318,6 @@ EOF
 
 		sudo chown root:root "$vpn_config_file"
 	fi
-
-	echo
 fi
 
 
@@ -337,6 +331,7 @@ if [[ "$install_root" == "true" ]] && ! which yum > /dev/null 2>&1
 then
 	if [[ -d /opt/root ]]
 	then
+		echo
 		echo $"It seems that ROOT is installed."
 		read -r -p $"-> Reinstall ROOT? [y/N] " answer
 
@@ -388,6 +383,4 @@ fi
 EOF
 
 	fi
-
-	echo
 fi
