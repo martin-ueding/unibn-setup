@@ -12,7 +12,7 @@ CHANGELOG: .git/HEAD
 l10n: unibn_setup.pot
 
 unibn_setup.pot: unibn_setup.php 99bonnet vpnc-restarter
-	bash --dump-po-strings unibn_setup > $@.build
+	bash --dump-po-strings unibn_setup.php > $@.build
 	bash --dump-po-strings 99bonnet >> $@.build
 	bash --dump-po-strings vpnc-restarter >> $@.build
 	mv $@.build $@
