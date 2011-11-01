@@ -80,6 +80,7 @@ version=2.0.1
 
 vpn_dispatcher_file=/etc/NetworkManager/dispatcher.d/99bonnet
 vpn_config_file="$HOME/.vpnc/unibn-wlan.conf"
+vpn_restarter_file="/sbin/vpnc-restarter"
 
 
 ###############################################################################
@@ -243,6 +244,15 @@ EOF
 	sudo chmod 755 "$vpn_dispatcher_file"
 	sudo chown root:root "$vpn_dispatcher_file"
 
+	cat << EOF | sudo tee "$vpn_restarter_file" > /dev/null
+<?php
+$s = file_get_contents('vpnc-restarter');
+$s = str_replace('$', '\$', $s);
+echo $s
+?>
+EOF
+	sudo chmod 755 "$vpn_restarter_file"
+	sudo chown root:root "$vpn_restarter_file"
 
 ###############################################################################
 #                    Ask for Bonn university user account.                    #

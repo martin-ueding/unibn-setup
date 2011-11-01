@@ -1,6 +1,6 @@
 # Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
-unibn_setup: unibn_setup.php 99bonnet
+unibn_setup: unibn_setup.php 99bonnet vpnc-restarter
 	php $< > $@
 	chmod +x $@
 

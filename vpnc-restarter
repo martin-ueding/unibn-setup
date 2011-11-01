@@ -1,0 +1,23 @@
+#!/bin/bash
+# Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
+
+set -e
+set -u
+
+# Cleanup for exit.
+destructor() {
+	vpnc-disconnect
+}
+
+# If this deamon is exiting, close out of the VPN.
+trap destructor EXIT
+
+# Start the VPN client in the foreground and restart it whenever it dies.
+while :
+do
+	vpnc --no-detach "$HOME/.vpnc/unibn-wlan.conf"
+done
+
+# This point in the code is virtually unreachable, the VPN will be closed out
+# of with the exit hook, so there should not be anything dangling if this
+# script is killed at some point.
