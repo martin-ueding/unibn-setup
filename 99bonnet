@@ -15,22 +15,25 @@
 set -e
 set -u
 
-# Do only handle wireless connections since bonnet is a wireless.
 if [[ "$1" != "wlan0" ]]
 then
 	exit 0
 fi
 
+# Kill vpnc if it is still active
+if pgrep vpnc
+then
+	vpnc-disconnect
+fi
+
+# Exit if we are not connected to bonnet
+if ! iwconfig wlan0 | grep bonnet
+then
+	return 0
+fi
+
 # Handle the action
 if [[ "$2" == up ]]
 then
-	# Exit if we are not connected to bonnet
-	if ! iwconfig wlan0 | grep bonnet
-	then
-		exit 0
-	fi
-
-	/sbin/vpnc-restarter
-else
-	pkill vpnc-restarter
+	vpnc "$HOME/.vpnc/unibn-wlan.conf"
 fi

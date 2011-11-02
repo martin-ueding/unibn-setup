@@ -1,6 +1,6 @@
 # Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>
 
-unibn_setup: unibn_setup.php 99bonnet.asc vpnc-restarter.asc CHANGELOG de.mo.asc
+unibn_setup: unibn_setup.php 99bonnet.asc CHANGELOG de.mo.asc
 	php $< > $@.build
 	mv $@.build $@
 	chmod +x $@
@@ -11,11 +11,10 @@ CHANGELOG: .git/HEAD
 
 l10n: unibn_setup.pot
 
-unibn_setup.pot: unibn_setup 99bonnet vpnc-restarter
+unibn_setup.pot: unibn_setup 99bonnet
 	$(RM) $@.build
 	bash --dump-po-strings unibn_setup >> $@.build
 	bash --dump-po-strings 99bonnet >> $@.build
-	bash --dump-po-strings vpnc-restarter >> $@.build
 	mv $@.build $@
 
 de.mo: de.po
