@@ -9,15 +9,15 @@ then
 	return
 fi
 
-# Kill vpnc if it is still active
-if pgrep vpnc
-then
-	vpnc-disconnect
-fi
-
-# Exit if we are not connected to bonnet
+# If we are not connected to "bonnet" exit and disconnect from VPN.
 if ! iwconfig wlan0 | grep bonnet
 then
+	# Kill vpnc if it is still active.
+	if pgrep vpnc
+	then
+		vpnc-disconnect
+	fi
+
 	return 0
 fi
 
