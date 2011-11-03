@@ -9,15 +9,18 @@ then
 	return
 fi
 
-# If we are not connected to "bonnet" exit and disconnect from VPN.
-if ! iwconfig wlan0 | grep bonnet
-then
+kill_vpnc() {
 	# Kill vpnc if it is still active.
 	if pgrep vpnc
 	then
 		vpnc-disconnect
 	fi
+}
 
+# If we are not connected to "bonnet" exit and disconnect from VPN.
+if ! iwconfig wlan0 | grep bonnet
+then
+	kill_vpnc
 	return 0
 fi
 
@@ -25,4 +28,7 @@ fi
 if [[ "$2" == up ]]
 then
 	vpnc "$HOME/.vpnc/unibn-wlan.conf"
+elif [[ "$2" == down ]]
+then
+	kill_vpnc
 fi
