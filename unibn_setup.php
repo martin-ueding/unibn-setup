@@ -79,7 +79,7 @@ set -u
 version=2.0.1
 
 vpn_dispatcher_file=/etc/NetworkManager/dispatcher.d/99bonnet
-vpn_config_file="$HOME/.vpnc/unibn-wlan.conf"
+vpn_config_file=/etc/unibn-wlan.conf
 
 
 ###############################################################################
@@ -297,9 +297,7 @@ EOF
 
 		echo 'I: Erstelle Konfigurationsdatei für vpnc, den VPN client …'
 
-		mkdir -p "$(dirname "$vpn_config_file")"
-
-		cat > "$vpn_config_file" << EOF
+		cat << EOF | sudo tee "$vpn_config_file" > /dev/null
 IPSec gateway 131.220.224.201
 IPSec ID unibn-wlan
 IPSec secret Ne\$e!
