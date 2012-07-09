@@ -259,6 +259,8 @@ then
 	packages_fedora=( root ${packages_fedora[@]} )
 fi
 
+echo
+
 # Install the packages with whatever package manager can be found.
 if which apt-get > /dev/null 2>&1
 then
