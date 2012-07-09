@@ -179,6 +179,45 @@ fi
 
 echo
 
+read -r -p '-> gnuplot installieren? [Y/n] ' answer
+
+if [[ "$answer" = [yYjJ] || -z "$answer" ]]
+then
+	install_gnuplot=true
+	echo 'I: gnuplot wird eingerichtet.'
+else
+	install_gnuplot=false
+	echo 'I: gnuplot *nicht* wird eingerichtet.'
+fi
+
+echo
+
+read -r -p '-> LaTeX installieren? [Y/n] ' answer
+
+if [[ "$answer" = [yYjJ] || -z "$answer" ]]
+then
+	install_latex=true
+	echo 'I: LaTeX wird eingerichtet.'
+else
+	install_latex=false
+	echo 'I: LaTeX *nicht* wird eingerichtet.'
+fi
+
+echo
+
+read -r -p '-> Emacs installieren? [Y/n] ' answer
+
+if [[ "$answer" = [yYjJ] || -z "$answer" ]]
+then
+	install_emacs=true
+	echo 'I: Emacs wird eingerichtet.'
+else
+	install_emacs=false
+	echo 'I: Emacs *nicht* wird eingerichtet.'
+fi
+
+echo
+
 ###############################################################################
 #                        Install packages via apt-get.                        #
 ###############################################################################
