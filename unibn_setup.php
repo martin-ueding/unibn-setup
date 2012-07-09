@@ -53,8 +53,8 @@
 # `sudo`. Ubuntu and Fedora have this as a default, Debian uses a separate root
 # account instead of sudo by default.
 #
-#
 # In order to run, this script needs:
+#
 # * apt-get or yum
 # * awk
 # * bash
