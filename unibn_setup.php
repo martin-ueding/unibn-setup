@@ -34,7 +34,6 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-
 ###############################################################################
 #                                 Description                                 #
 ###############################################################################
@@ -68,7 +67,6 @@
 # * wget (at least on non-Fedora)
 # * which
 
-
 ###############################################################################
 #                               Global Settings                               #
 ###############################################################################
@@ -80,7 +78,6 @@ version=2.0.1
 
 vpn_config_file=/etc/unibn-wlan.conf
 vpn_dispatcher_file=/etc/NetworkManager/dispatcher.d/99bonnet
-
 
 ###############################################################################
 #                         Handle --version and --help.                        #
@@ -97,7 +94,6 @@ case "${1:-}" in
 		exit 0
 		;;
 esac
-
 
 ###############################################################################
 #                   Print welcome message and instructions.                   #
@@ -153,11 +149,9 @@ fi
 
 echo
 
-
 ###############################################################################
 #                         Ask for installation scope.                         #
 ###############################################################################
-
 
 read -r -p '-> VPN Zugang einrichten? [Y/n] ' answer
 
@@ -172,7 +166,6 @@ fi
 
 echo
 
-
 read -r -p '-> ROOT Statistik installieren? [Y/n] ' answer
 
 if [[ "$answer" = [yYjJ] || -z "$answer" ]]
@@ -185,7 +178,6 @@ else
 fi
 
 echo
-
 
 ###############################################################################
 #                        Install packages via apt-get.                        #
@@ -223,7 +215,6 @@ fi
 
 echo
 
-
 ###############################################################################
 #                          Create VPN login script.                           #
 ###############################################################################
@@ -242,7 +233,6 @@ EOF
 
 	sudo chmod 755 "$vpn_dispatcher_file"
 	sudo chown root:root "$vpn_dispatcher_file"
-
 
 ###############################################################################
 #                    Ask for Bonn university user account.                    #
@@ -310,7 +300,6 @@ EOF
 
 	echo
 fi
-
 
 ###############################################################################
 #                      Install ROOT statistics package.                       #
@@ -398,7 +387,6 @@ EOF
 
 	echo
 fi
-
 
 ###############################################################################
 #                                   Finish.                                   #
