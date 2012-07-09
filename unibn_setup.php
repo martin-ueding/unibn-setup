@@ -224,11 +224,27 @@ echo
 
 echo 'I: Dieses Skript wird gleich nach dem [sudo] Passwort fragen.'
 echo 'I: Dies ist das Passwort für Ihren Benutzeraccount auf diesem Rechner.'
-echo
-echo 'I: Installiere vpn client, emacs, LaTeX, gnuplot …'
 
-packages_debian=( emacs texlive-latex-base gnuplot )
-packages_fedora=( emacs texlive-latex gnuplot )
+packages_debian=( "" )
+packages_fedora=( "" )
+
+if [[ "$install_latex" == "true" ]]
+then
+	packages_debian=( texlive-latex-base ${packages_debian[@]} )
+	packages_fedora=( texlive-latex ${packages_fedora[@]} )
+fi
+
+if [[ "$install_gnuplot" == "true" ]]
+then
+	packages_debian=( gnuplot ${packages_debian[@]} )
+	packages_fedora=( gnuplot ${packages_fedora[@]} )
+fi
+
+if [[ "$install_emacs" == "true" ]]
+then
+	packages_debian=( emacs ${packages_debian[@]} )
+	packages_fedora=( emacs ${packages_fedora[@]} )
+fi
 
 if [[ "$install_vpn" == "true" ]]
 then
