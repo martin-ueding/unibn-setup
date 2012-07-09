@@ -264,10 +264,22 @@ echo
 # Install the packages with whatever package manager can be found.
 if which apt-get > /dev/null 2>&1
 then
-	sudo apt-get -y install ${packages_debian[@]}
+	if [[ -z "${packages_debian[@]}" ]]
+	then
+		echo "W: Keine Pakete zur Installation ausgewählt."
+	else
+		echo "I: Installiere ${packages_debian[@]} je nach Auswahl."
+		sudo apt-get -y install "${packages_debian[@]}"
+	fi
 elif which yum > /dev/null 2>&1
 then
-	sudo yum -y install ${packages_fedora[@]}
+	if [[ -z "${packages_debian[@]}" ]]
+	then
+		echo "W: Keine Pakete zur Installation ausgewählt."
+	else
+		echo "I: Installiere ${packages_fedora[@]} je nach Auswahl."
+		sudo yum -y install "${packages_fedora[@]}"
+	fi
 fi
 
 echo
